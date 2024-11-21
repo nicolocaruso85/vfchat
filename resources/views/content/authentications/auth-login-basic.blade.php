@@ -1,6 +1,6 @@
 @extends('layouts/blankLayout')
 
-@section('title', 'Login Basic - Pages')
+@section('title', 'Login')
 
 @section('page-style')
 @vite([
@@ -23,13 +23,14 @@
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1">Welcome to {{config('variables.templateName')}}! 👋</h4>
-          <p class="mb-6">Please sign-in to your account and start the adventure</p>
+          <h4 class="mb-4">Benvenuto in {{config('variables.templateName')}}!</h4>
 
-          <form id="formAuthentication" class="mb-6" action="{{url('/')}}" method="GET">
+          <form id="formAuthentication" class="mb-6" action="{{url('login')}}" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <div class="mb-6">
-              <label for="email" class="form-label">Email or Username</label>
-              <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus>
+              <label for="email" class="form-label">Nome utente</label>
+              <input type="text" class="form-control" id="email" name="email" placeholder="Inserisci il tuo nome utente" autofocus>
             </div>
             <div class="mb-6 form-password-toggle">
               <label class="form-label" for="password">Password</label>
@@ -43,11 +44,11 @@
                 <div class="form-check mb-0 ms-2">
                   <input class="form-check-input" type="checkbox" id="remember-me">
                   <label class="form-check-label" for="remember-me">
-                    Remember Me
+                    Ricordami
                   </label>
                 </div>
-                <a href="{{url('auth/forgot-password-basic')}}">
-                  <span>Forgot Password?</span>
+                <a href="{{url('forgot-password')}}">
+                  <span>Password dimenticata?</span>
                 </a>
               </div>
             </div>
@@ -55,13 +56,6 @@
               <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
             </div>
           </form>
-
-          <p class="text-center">
-            <span>New on our platform?</span>
-            <a href="{{url('auth/register-basic')}}">
-              <span>Create an account</span>
-            </a>
-          </p>
         </div>
       </div>
     </div>

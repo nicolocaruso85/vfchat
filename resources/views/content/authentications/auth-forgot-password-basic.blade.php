@@ -24,19 +24,19 @@
             </a>
           </div>
           <!-- /Logo -->
-          <h4 class="mb-1">Forgot Password? 🔒</h4>
-          <p class="mb-6">Enter your email and we'll send you instructions to reset your password</p>
+          <h4 class="mb-1">Password dimenticata? 🔒</h4>
+          <p class="mb-6">Inserisci la tua email e riceverai le istruzione per effettuare il reset della tua password</p>
           <form id="formAuthentication" class="mb-6" action="{{url('/')}}" method="GET">
             <div class="mb-6">
               <label for="email" class="form-label">Email</label>
               <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" autofocus>
             </div>
-            <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
+            <button class="btn btn-primary d-grid w-100">Invia Link di recupero</button>
           </form>
           <div class="text-center">
-            <a href="{{url('auth/login-basic')}}" class="d-flex justify-content-center">
+            <a href="{{url('login')}}" class="d-flex justify-content-center">
               <i class="bx bx-chevron-left scaleX-n1-rtl me-1"></i>
-              Back to login
+              Torna al login
             </a>
           </div>
         </div>
