@@ -42,7 +42,7 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
-use App\Http\Controllers\tables\Basic as TablesBasic;
+use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function () {
     // Main Page Route
@@ -101,8 +101,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form-layouts-vertical');
     Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
-    // tables
-    Route::get('/tables/basic', [TablesBasic::class, 'index'])->name('tables-basic');
+    // organigramma
+    Route::get('/organigramma', [UserController::class, 'organigramma'])->name('organigramma');
+
+    // utenti
+    Route::get('/utenti', [UserController::class, 'utenti'])->name('utenti');
+    Route::get('/ruoli', [UserController::class, 'ruoli'])->name('ruoli');
+    Route::get('/permessi', [UserController::class, 'permessi'])->name('permessi');
+
+    // statistiche
+    Route::get('/utenti-collegati', [UserController::class, 'utentiCollegati'])->name('utenti-collegati');
+    Route::get('/punteggio-utenti', [UserController::class, 'punteggioUtenti'])->name('punteggio-utenti');
+    Route::get('/punteggio-per-store', [UserController::class, 'punteggioPerStore'])->name('punteggio-per-store');
+    Route::get('/report-messaggi-inviati', [UserController::class, 'reportMessaggiInviati'])->name('report-messaggi-inviati');
+    Route::get('/report-con-classifica', [UserController::class, 'reportConClassifica'])->name('report-con-classifica');
+    Route::get('/report-generale', [UserController::class, 'reportGenerale'])->name('report-generale');
 });
 
 // authentication

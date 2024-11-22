@@ -16,6 +16,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
 
+  @livewireStyles
 
   <!-- Include Styles -->
   @include('layouts/sections/styles')
@@ -30,7 +31,8 @@
   @yield('layoutContent')
   <!--/ Layout Content -->
 
-  
+  @livewireScripts
+  @livewire('wire-elements-modal')
 
   <!-- Include Scripts -->
   @include('layouts/sections/scripts')

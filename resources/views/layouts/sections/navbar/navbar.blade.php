@@ -38,7 +38,7 @@ $navbarDetached = ($navbarDetached ?? '');
         <div class="navbar-nav align-items-center">
           <div class="nav-item d-flex align-items-center">
             <i class="bx bx-search bx-md"></i>
-            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Search..." aria-label="Search...">
+            <input type="text" class="form-control border-0 shadow-none ps-1 ps-sm-2" placeholder="Ricerca nel sito..." aria-label="Ricerca nel sito...">
           </div>
         </div>
         <!-- /Search -->
@@ -72,20 +72,12 @@ $navbarDetached = ($navbarDetached ?? '');
               </li>
               <li>
                 <a class="dropdown-item" href="javascript:void(0);">
-                  <i class="bx bx-user bx-md me-3"></i><span>My Profile</span>
+                  <i class="bx bx-user bx-md me-3"></i><span>Il mio Profilo</span>
                 </a>
               </li>
               <li>
                 <a class="dropdown-item" href="javascript:void(0);">
-                  <i class="bx bx-cog bx-md me-3"></i><span>Settings</span>
-                </a>
-              </li>
-              <li>
-                <a class="dropdown-item" href="javascript:void(0);">
-                  <span class="d-flex align-items-center align-middle">
-                    <i class="flex-shrink-0 bx bx-credit-card bx-md me-3"></i><span class="flex-grow-1 align-middle">Billing Plan</span>
-                    <span class="flex-shrink-0 badge rounded-pill bg-danger">4</span>
-                  </span>
+                  <i class="bx bx-cog bx-md me-3"></i><span>Impostazioni</span>
                 </a>
               </li>
               <li>

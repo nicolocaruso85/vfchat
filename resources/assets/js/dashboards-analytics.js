@@ -21,11 +21,11 @@
         {
           name: new Date().getFullYear() - 1,
 
-          data: [18, 7, 15, 29, 18, 12, 9]
+          data: [18, 7, 15, 29, 18, 12, 9, 18, 7, 15, 29, 18]
         },
         {
-          name: new Date().getFullYear() - 2,
-          data: [-13, -18, -9, -14, -5, -17, -15]
+          name: new Date().getFullYear() ,
+          data: [13, 18, 9, 14, 5, 17, 15, 18, 9, 14, 5, 17]
         }
       ],
       chart: {
@@ -88,7 +88,7 @@
         opacity: [1, 1]
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+        categories: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
         labels: {
           style: {
             fontSize: '13px',
@@ -258,7 +258,7 @@
   const growthChartEl = document.querySelector('#growthChart'),
     growthChartOptions = {
       series: [78],
-      labels: ['Growth'],
+      labels: ['Percentuale'],
       chart: {
         height: 240,
         type: 'radialBar'
