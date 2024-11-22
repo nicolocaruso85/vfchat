@@ -7,7 +7,13 @@
       "slug": "dashboard"
     },
     {
-      "menuHeader": "Gestione Azienda"
+      "menuHeader": "Gestione Aziende"
+    },
+    {
+      "name": "Aziende",
+      "icon": "menu-icon tf-icons bx bxs-factory",
+      "slug": "aziende",
+      "url": "aziende"
     },
     {
       "name": "Organigramma",

@@ -2,16 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Azienda;
 use LivewireUI\Modal\ModalComponent;
 
-class EliminaUtente extends ModalComponent
+class EliminaAzienda extends ModalComponent
 {
-    public $user_id;
+    public $azienda_id;
 
     public function delete()
     {
-        User::find($this->user_id)->delete();
+        Azienda::find($this->azienda_id)->delete();
 
         $this->dispatch('refreshDatatable');
         $this->closeModal();
@@ -24,7 +24,7 @@ class EliminaUtente extends ModalComponent
 
     public function render()
     {
-        return view('livewire.elimina-utente');
+        return view('livewire.elimina-azienda');
     }
 
     public static function closeModalOnEscape(): bool

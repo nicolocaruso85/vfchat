@@ -1,7 +1,7 @@
 @extends('layouts/contentNavbarLayout')
 
-@section('title', 'Organigramma')
+@section('title', 'Aziende')
 
 @section('content')
-    @livewire('organigramma')
+    @livewire('aziende')
 @endsection

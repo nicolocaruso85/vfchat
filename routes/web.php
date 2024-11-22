@@ -42,6 +42,7 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\AziendeController;
 use App\Http\Controllers\OrganigrammaController;
 use App\Http\Controllers\StatisticheController;
 use App\Http\Controllers\UserController;
@@ -102,6 +103,9 @@ Route::middleware('auth')->group(function () {
     // form layouts
     Route::get('/form/layouts-vertical', [VerticalForm::class, 'index'])->name('form-layouts-vertical');
     Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
+
+    // aziende
+    Route::get('/aziende', [AziendeController::class, 'aziende'])->name('aziende');
 
     // organigramma
     Route::get('/organigramma', [OrganigrammaController::class, 'organigramma'])->name('organigramma');

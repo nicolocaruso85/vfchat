@@ -2,18 +2,28 @@
 
 namespace App\Livewire;
 
-use App\Models\User;
+use App\Models\Azienda;
 use LivewireUI\Modal\ModalComponent;
 
-class EliminaUtente extends ModalComponent
+class AggiungiAzienda extends ModalComponent
 {
-    public $user_id;
+    public $nome;
 
-    public function delete()
+    public function render()
     {
-        User::find($this->user_id)->delete();
+        return view('livewire.aggiungi-azienda');
+    }
+
+    public function create()
+    {
+        $validatedData = $this->validate([
+            'nome' => 'required',
+        ]);
+
+        $azienda = Azienda::create($validatedData);
 
         $this->dispatch('refreshDatatable');
+
         $this->closeModal();
     }
 
@@ -22,9 +32,9 @@ class EliminaUtente extends ModalComponent
         $this->closeModal();
     }
 
-    public function render()
+    public static function modalMaxWidth(): string
     {
-        return view('livewire.elimina-utente');
+        return '3xl';
     }
 
     public static function closeModalOnEscape(): bool
