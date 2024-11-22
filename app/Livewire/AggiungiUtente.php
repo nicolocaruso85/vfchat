@@ -34,7 +34,6 @@ class AggiungiUtente extends ModalComponent
         $validatedData['password'] = Hash::make($this->password);
 
         $user = User::create($validatedData);
-        $user->info()->updateOrCreate(['user_id' => $user->id], $validatedData);
 
         $user->syncRoles(array_map('intval', $this->ruoli));
 
