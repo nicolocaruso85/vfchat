@@ -13,7 +13,7 @@
     "livePreview" => "https://demos.themeselection.com/sneat-bootstrap-html-laravel-admin-template-free/demo/",
     "productPage" => "https://themeselection.com/item/sneat-dashboard-free-laravel/",
     "productPagePro" => "https://themeselection.com/item/sneat-dashboard-pro-laravel/",
-    "support" => "https://github.com/themeselection/sneat-html-laravel-admin-template-free/issues",
+    "support" => "",
     "moreThemes" => "https://themeselection.com/",
     "documentation" => "https://demos.themeselection.com/sneat-bootstrap-html-admin-template/documentation",
     "repository" => "https://github.com/themeselection/sneat-bootstrap-html-laravel-admin-template-free",

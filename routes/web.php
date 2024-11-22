@@ -42,6 +42,8 @@ use App\Http\Controllers\form_elements\BasicInput;
 use App\Http\Controllers\form_elements\InputGroups;
 use App\Http\Controllers\form_layouts\VerticalForm;
 use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\OrganigrammaController;
+use App\Http\Controllers\StatisticheController;
 use App\Http\Controllers\UserController;
 
 Route::middleware('auth')->group(function () {
@@ -102,7 +104,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/form/layouts-horizontal', [HorizontalForm::class, 'index'])->name('form-layouts-horizontal');
 
     // organigramma
-    Route::get('/organigramma', [UserController::class, 'organigramma'])->name('organigramma');
+    Route::get('/organigramma', [OrganigrammaController::class, 'organigramma'])->name('organigramma');
 
     // utenti
     Route::get('/utenti', [UserController::class, 'utenti'])->name('utenti');
@@ -110,12 +112,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/permessi', [UserController::class, 'permessi'])->name('permessi');
 
     // statistiche
-    Route::get('/utenti-collegati', [UserController::class, 'utentiCollegati'])->name('utenti-collegati');
-    Route::get('/punteggio-utenti', [UserController::class, 'punteggioUtenti'])->name('punteggio-utenti');
-    Route::get('/punteggio-per-store', [UserController::class, 'punteggioPerStore'])->name('punteggio-per-store');
-    Route::get('/report-messaggi-inviati', [UserController::class, 'reportMessaggiInviati'])->name('report-messaggi-inviati');
-    Route::get('/report-con-classifica', [UserController::class, 'reportConClassifica'])->name('report-con-classifica');
-    Route::get('/report-generale', [UserController::class, 'reportGenerale'])->name('report-generale');
+    Route::get('/utenti-collegati', [StatisticheController::class, 'utentiCollegati'])->name('utenti-collegati');
+    Route::get('/punteggio-utenti', [StatisticheController::class, 'punteggioUtenti'])->name('punteggio-utenti');
+    Route::get('/punteggio-per-store', [StatisticheController::class, 'punteggioPerStore'])->name('punteggio-per-store');
+    Route::get('/report-messaggi-inviati', [StatisticheController::class, 'reportMessaggiInviati'])->name('report-messaggi-inviati');
+    Route::get('/report-con-classifica', [StatisticheController::class, 'reportConClassifica'])->name('report-con-classifica');
+    Route::get('/report-generale', [StatisticheController::class, 'reportGenerale'])->name('report-generale');
 });
 
 // authentication

@@ -7,10 +7,10 @@ $containerFooter = !empty($containerNav) ? $containerNav : 'container-fluid';
   <div class="{{ $containerFooter }}">
     <div class="footer-container d-flex align-items-center justify-content-between py-4 flex-md-row flex-column">
       <div class="text-body">
-        © <script>document.write(new Date().getFullYear())</script>
+        © <script>document.write(new Date().getFullYear())</script> {{ config('variables.templateName') }}
       </div>
       <div class="d-none d-lg-inline-block">
-        <a href="{{ config('variables.support') ? config('variables.support') : '#' }}" target="_blank" class="footer-link d-none d-sm-inline-block">Support</a>
+        <a href="{{ config('variables.support') ? config('variables.support') : '#' }}" target="_blank" class="footer-link d-none d-sm-inline-block">Supporto</a>
       </div>
     </div>
   </div>
