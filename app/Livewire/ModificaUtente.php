@@ -51,7 +51,6 @@ class ModificaUtente extends ModalComponent
         }
 
         $this->user->update($validatedData);
-        $this->user->info()->updateOrCreate(['user_id' => $this->user->id], $validatedData);
 
         $this->user->syncRoles(array_map('intval', $this->ruoli));
 
