@@ -15,7 +15,27 @@
         <form id="aggiungi-azienda-form" wire:submit="create">
             <div class="fw-row mb-5">
                 <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Nome') }}</label>
-                <input type="text" class="form-control form-control-md" wire:model.live="nome" required>
+                <input type="text" class="form-control form-control-md" wire:model="nome" required>
+            </div>
+            <div class="fw-row mb-5">
+                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Telefono') }}</label>
+                <input type="text" class="form-control form-control-md" wire:model="telefono">
+            </div>
+            <div class="fw-row mb-5">
+                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Indirizzo') }}</label>
+                <input type="text" class="form-control form-control-md" wire:model="indirizzo">
+            </div>
+            <div class="fw-row mb-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Città') }}</label>
+                        <input type="text" class="form-control form-control-md" wire:model="citta">
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label fs-6 fw-bolder text-dark required">{{ __('CAP') }}</label>
+                        <input type="text" class="form-control form-control-md" wire:model="cap">
+                    </div>
+                </div>
             </div>
         </form>
     </div>

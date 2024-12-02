@@ -11,12 +11,20 @@ class ModificaAzienda extends ModalComponent
     public $azienda;
 
     public $nome;
+    public $telefono;
+    public $indirizzo;
+    public $citta;
+    public $cap;
 
     public function mount()
     {
         $this->azienda = Azienda::find($this->azienda_id);
 
         $this->nome = $this->azienda->nome;
+        $this->telefono = $this->azienda->telefono;
+        $this->indirizzo = $this->azienda->indirizzo;
+        $this->citta = $this->azienda->citta;
+        $this->cap = $this->azienda->cap;
     }
 
     public function render()
@@ -28,11 +36,13 @@ class ModificaAzienda extends ModalComponent
     {
         $validatedData = $this->validate([
             'nome' => 'required',
+            'telefono' => '',
+            'indirizzo' => '',
+            'citta' => '',
+            'cap' => '',
         ]);
 
-        $this->azienda->update([
-            'nome' => $validatedData['nome'],
-        ]);
+        $this->azienda->update($validatedData);
 
         $this->dispatch('refreshDatatable');
 

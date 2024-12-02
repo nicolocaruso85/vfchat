@@ -2,20 +2,28 @@
 
 namespace App\Livewire;
 
-use App\Models\Azienda;
-use App\Traits\AuthorizesRoleOrPermission;
-use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class AziendeTable extends DataTableComponent
+class DipendentiRuoloTable extends DataTableComponent
 {
-    use AuthorizesRoleOrPermission;
+    public $id_azienda;
+    public $id_ruolo;
 
-    protected $model = Azienda::class;
+    public $action = 'dipendente-ruolo';
 
-    public $action = 'azienda';
+    public function builder(): Builder
+    {
+        return User::whereHas('aziende', function ($query) {
+            return $query->where('id_azienda', $this->id_azienda);
+        })
+        ->whereHas('roles', function ($query) {
+            return $query->where('role_id', $this->id_ruolo);
+        });
+    }
 
     public function configure(): void
     {
@@ -24,7 +32,7 @@ class AziendeTable extends DataTableComponent
         $this->setColumnSelectStatus(false);
         $this->setPerPage(10);
 
-        $this->setDefaultSort('nome');
+        $this->setDefaultSort('id');
 
         $this->setTableAttributes([
             'class' => 'table table-rounded table-row-bordered border gy-4 gs-6 fs-6',
@@ -43,14 +51,14 @@ class AziendeTable extends DataTableComponent
             ];
         });
 
-        $this->setSearchPlaceholder('Cerca tra le Aziende');
-        $this->setEmptyMessage('Nessuna azienda trovata, prova a cambiare la tua ricerca');
+        $this->setSearchPlaceholder('Cerca tra i Dipendenti');
+        $this->setEmptyMessage('Nessun dipendente trovato, prova a cambiare la tua ricerca');
 
         $this->setConfigurableAreas([
             'toolbar-right-start' => [
                 'partials.button.new', [
-                    'modal'  => 'aggiungi-azienda',
                     'action' => $this->action,
+                    'modal' => 'aggiungi-dipendente-azienda',
                 ],
             ],
         ]);
@@ -62,12 +70,16 @@ class AziendeTable extends DataTableComponent
             Column::make('Id', 'id')
                 ->sortable(),
 
-            Column::make('Nome', 'nome')
+            Column::make('Nome', 'name')
+                ->searchable()
+                ->sortable(),
+
+            Column::make('Email', 'email')
                 ->searchable()
                 ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
-                ->component('azioni-aziende')
+                ->component('azioni-dipendenti-ruolo')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
                 ]),

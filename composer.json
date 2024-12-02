@@ -16,9 +16,11 @@
     "laravel/ui": "^4.5",
     "livewire/livewire": "^3.5",
     "rappasoft/laravel-livewire-tables": "^3.5",
+    "spatie/eloquent-sortable": "^4.4",
     "spatie/laravel-activitylog": "^4.9",
     "spatie/laravel-permission": "^6.10",
     "spatie/laravel-searchable": "^1.12",
+    "victorybiz/laravel-simple-select": "^1.7",
     "wire-elements/modal": "^2.0",
     "yadahan/laravel-authentication-log": "^1.7"
   },

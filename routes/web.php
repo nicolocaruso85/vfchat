@@ -106,12 +106,14 @@ Route::middleware('auth')->group(function () {
 
     // aziende
     Route::get('/aziende', [AziendeController::class, 'aziende'])->name('aziende');
+    Route::get('/azienda/{id}', [AziendeController::class, 'azienda'])->name('azienda');
 
     // organigramma
     Route::get('/organigramma', [OrganigrammaController::class, 'organigramma'])->name('organigramma');
 
     // utenti
     Route::get('/utenti', [UserController::class, 'utenti'])->name('utenti');
+    Route::get('/utente/{id}', [UserController::class, 'utente'])->name('utente');
     Route::get('/ruoli', [UserController::class, 'ruoli'])->name('ruoli');
     Route::get('/permessi', [UserController::class, 'permessi'])->name('permessi');
 

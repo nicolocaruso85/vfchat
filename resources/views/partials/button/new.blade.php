@@ -1,14 +1,19 @@
 @if ($action)
     <div class="ml-4">
-        <button class="btn btn-flex flex-center btn-success w-40px w-md-auto h-40px px-0 px-md-6" wire:click="$dispatch('openModal', { component: '{{ $modal }}' })">
+        <button class="btn btn-secondary add-new btn-primary ms-2" wire:click="$dispatch('openModal', { component: '{{ $modal }}' })">
             <span>
-                @if ($action == 'promo')
-                    {{ __('Nuova :action', ['action' => $action]) }}
-                @elseif($action == 'promo aziendale')
-                    {{ __('Nuova :action', ['action' => $action]) }}
-                @else
-                    {{ __('Nuovo :action', ['action' => $action]) }}
-                @endif
+                <i class="bx bx-plus bx-sm me-0 me-sm-2"></i>
+                <span class="d-none d-sm-inline-block">
+                    @if ($action == 'azienda')
+                        {{ __('Nuova :action', ['action' => $action]) }}
+                    @elseif ($action == 'dipendente-azienda')
+                        {{ __('Associa dipendenti') }}
+                    @elseif ($action == 'dipendente-ruolo')
+                        {{ __('Aggiungi dipendenti') }}
+                    @else
+                        {{ __('Nuovo :action', ['action' => $action]) }}
+                    @endif
+                </span>
             </span>
         </button>
     </div>

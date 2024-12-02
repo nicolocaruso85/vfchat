@@ -8,6 +8,10 @@ use LivewireUI\Modal\ModalComponent;
 class AggiungiAzienda extends ModalComponent
 {
     public $nome;
+    public $telefono;
+    public $indirizzo;
+    public $citta;
+    public $cap;
 
     public function render()
     {
@@ -18,6 +22,10 @@ class AggiungiAzienda extends ModalComponent
     {
         $validatedData = $this->validate([
             'nome' => 'required',
+            'telefono' => '',
+            'indirizzo' => '',
+            'citta' => '',
+            'cap' => '',
         ]);
 
         $azienda = Azienda::create($validatedData);
