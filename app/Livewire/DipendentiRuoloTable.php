@@ -84,6 +84,7 @@ class DipendentiRuoloTable extends DataTableComponent
                 ->component('azioni-dipendenti-ruolo')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
+                    'id_ruolo' => $this->id_ruolo,
                 ]),
         ];
     }
