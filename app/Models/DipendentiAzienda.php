@@ -9,6 +9,8 @@ class DipendentiAzienda extends Pivot
 {
     use HasFactory;
 
+    protected $table = 'dipendenti_aziendas';
+
     protected $fillable = [
         'id_dipendente',
         'id_azienda',

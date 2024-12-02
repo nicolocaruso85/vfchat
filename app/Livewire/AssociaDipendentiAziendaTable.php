@@ -2,23 +2,20 @@
 
 namespace App\Livewire;
 
+use App\Models\DipendentiAzienda;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class DipendentiAziendaTable extends DataTableComponent
+class AssociaDipendentiAziendaTable extends DataTableComponent
 {
     public $id_azienda;
 
-    public $action = 'dipendente-azienda';
-
     public function builder(): Builder
     {
-        return User::whereHas('aziende', function ($query) {
-            return $query->where('id_azienda', $this->id_azienda);
-        });
+        return User::query();
     }
 
     public function configure(): void
@@ -49,16 +46,6 @@ class DipendentiAziendaTable extends DataTableComponent
 
         $this->setSearchPlaceholder('Cerca tra i Dipendenti');
         $this->setEmptyMessage('Nessun dipendente trovato, prova a cambiare la tua ricerca');
-
-        $this->setConfigurableAreas([
-            'toolbar-right-start' => [
-                'partials.button.new', [
-                    'action' => $this->action,
-                    'modal' => 'aggiungi-dipendente-azienda',
-                    'id_azienda' => $this->id_azienda,
-                ],
-            ],
-        ]);
     }
 
     public function columns(): array
@@ -76,10 +63,20 @@ class DipendentiAziendaTable extends DataTableComponent
                 ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
-                ->component('azioni-dipendenti-azienda')
+                ->component('azioni-associa-dipendenti-azienda')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
                 ]),
         ];
+    }
+
+    public function associa($id_utente)
+    {
+        DipendentiAzienda::updateOrCreate([
+            'id_dipendente' => $id_utente,
+            'id_azienda' => $this->id_azienda,
+        ]);
+
+        $this->dispatch('refreshDatatable');
     }
 }

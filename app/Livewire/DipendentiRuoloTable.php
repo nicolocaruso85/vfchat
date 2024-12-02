@@ -58,7 +58,9 @@ class DipendentiRuoloTable extends DataTableComponent
             'toolbar-right-start' => [
                 'partials.button.new', [
                     'action' => $this->action,
-                    'modal' => 'aggiungi-dipendente-azienda',
+                    'modal' => 'aggiungi-dipendente-ruolo',
+                    'id_azienda' => $this->id_azienda,
+                    'id_ruolo' => $this->id_ruolo,
                 ],
             ],
         ]);

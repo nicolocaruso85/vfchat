@@ -24,7 +24,7 @@
             <h5 class="card-title text-primary mb-3">Benvenuto {{ auth()->user()->name }}! 🎉</h5>
             <p class="mb-6">Utilizza il menu laterale per navigare nel sito.</p>
 
-            <a href="javascript:;" class="btn btn-sm btn-outline-primary">Il mio profilo</a>
+            <a href="/utente/{{ auth()->user()->id }}" class="btn btn-sm btn-outline-primary">Il mio profilo</a>
           </div>
         </div>
         <div class="col-sm-5 text-center text-sm-left">

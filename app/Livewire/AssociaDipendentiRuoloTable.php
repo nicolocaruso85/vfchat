@@ -2,17 +2,17 @@
 
 namespace App\Livewire;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class DipendentiAziendaTable extends DataTableComponent
+class AssociaDipendentiRuoloTable extends DataTableComponent
 {
     public $id_azienda;
-
-    public $action = 'dipendente-azienda';
+    public $id_ruolo;
 
     public function builder(): Builder
     {
@@ -49,16 +49,6 @@ class DipendentiAziendaTable extends DataTableComponent
 
         $this->setSearchPlaceholder('Cerca tra i Dipendenti');
         $this->setEmptyMessage('Nessun dipendente trovato, prova a cambiare la tua ricerca');
-
-        $this->setConfigurableAreas([
-            'toolbar-right-start' => [
-                'partials.button.new', [
-                    'action' => $this->action,
-                    'modal' => 'aggiungi-dipendente-azienda',
-                    'id_azienda' => $this->id_azienda,
-                ],
-            ],
-        ]);
     }
 
     public function columns(): array
@@ -76,10 +66,20 @@ class DipendentiAziendaTable extends DataTableComponent
                 ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
-                ->component('azioni-dipendenti-azienda')
+                ->component('azioni-associa-dipendenti-ruolo')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
                 ]),
         ];
+    }
+
+    public function associa($id_utente)
+    {
+        $user = User::find($id_utente);
+        $role = Role::find($this->id_ruolo);
+
+        $user->assignRole($role->name);
+
+        $this->dispatch('refreshDatatable');
     }
 }
