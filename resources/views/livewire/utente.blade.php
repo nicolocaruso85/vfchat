@@ -68,7 +68,7 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-primary w-100">Modifica Utente</button>
+                            <button class="btn btn-primary w-100" wire:click="$dispatch('openModal', { component: 'modifica-utente', arguments: {{ json_encode(['user' => $user->id]) }} })">Modifica Utente</button>
                         </div>
                     </div>
                 </div>

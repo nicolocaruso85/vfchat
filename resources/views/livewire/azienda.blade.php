@@ -63,7 +63,7 @@
                             </li>
                         </ul>
                         <div class="d-flex justify-content-center">
-                            <button class="btn btn-primary w-100">Modifica Azienda</button>
+                            <button class="btn btn-primary w-100" wire:click="$dispatch('openModal', { component: 'modifica-azienda', arguments: {{ json_encode(['azienda_id' => $azienda->id]) }} })">Modifica Azienda</button>
                         </div>
                     </div>
                 </div>
