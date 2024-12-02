@@ -30,4 +30,11 @@ class LoginBasic extends Controller
 
         return back()->withInput($request->only('email', 'remember'));
     }
+
+    public function customerLogout()
+    {
+        Auth::logout();
+
+        return redirect()->route('login');
+    }
 }

@@ -131,3 +131,4 @@ Route::get('/login', [LoginBasic::class, 'index'])->name('login');
 Route::post('/login', [LoginBasic::class, 'customerLogin'])->name('login');
 Route::get('/register', [RegisterBasic::class, 'index'])->name('auth-register-basic');
 Route::get('/forgot-password', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
+Route::post('logout', [LoginBasic::class, 'customerLogout'])->name('logout');
