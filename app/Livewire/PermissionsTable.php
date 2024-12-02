@@ -23,7 +23,7 @@ class PermissionsTable extends DataTableComponent
         $this->setColumnSelectStatus(false);
         $this->setPerPage(10);
 
-        $this->setDefaultSort('name');
+        $this->setDefaultSort('id');
 
         $this->setTableAttributes([
             'class' => 'table table-rounded table-row-bordered border gy-4 gs-6 fs-6',

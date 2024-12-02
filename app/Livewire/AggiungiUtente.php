@@ -13,7 +13,7 @@ class AggiungiUtente extends ModalComponent
     public $email;
     public $password;
     public $confirm_password;
-    public $ruoli;
+    public $ruoli = [];
 
     public $roles = [];
 
