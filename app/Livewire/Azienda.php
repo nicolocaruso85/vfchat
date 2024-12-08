@@ -23,6 +23,12 @@ class Azienda extends Component
         return $this->azienda->dipendenti->count();
     }
 
+    #[Computed]
+    public function puntivendita()
+    {
+        return $this->azienda->negozi->count();
+    }
+
     public function render()
     {
         return view('livewire.azienda');

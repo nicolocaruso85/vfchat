@@ -32,12 +32,12 @@
                         <div class="d-flex align-items-center gap-4">
                             <div class="avatar">
                                 <div class="avatar-initial rounded bg-label-primary">
-                                    <i class="bx bx-signal-5 bx-lg"></i>
+                                    <i class="bx bxs-buildings bx-lg"></i>
                                 </div>
                             </div>
                             <div>
-                                <h5 class="mb-0">119</h5>
-                                <span>Punteggio</span>
+                                <h5 class="mb-0">{{ $this->puntivendita }}</h5>
+                                <span>Punti vendita</span>
                             </div>
                         </div>
                     </div>
@@ -75,12 +75,17 @@
                 <ul class="nav nav-pills flex-column flex-md-row mb-6">
                     <li class="nav-item">
                         <a class="nav-link @if ($activeTab == 1) active @endif" wire:click="$set('activeTab', 1)">
-                            <i class="bx bx-user bx-sm me-1_5"></i>Informazioni
+                            <i class="bx bx-building bx-sm me-1_5"></i>Informazioni
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if ($activeTab == 2) active @endif" wire:click="$set('activeTab', 2)">
-                            <i class="bx bx-lock bx-sm me-1_5"></i>Dipendenti
+                            <i class="bx bx-user bx-sm me-1_5"></i>Dipendenti
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if ($activeTab == 3) active @endif" wire:click="$set('activeTab', 3)">
+                            <i class="bx bxs-buildings bx-sm me-1_5"></i>Punti vendita
                         </a>
                     </li>
                 </ul>
@@ -173,6 +178,10 @@
             @elseif ($activeTab == 2)
                 <div>
                     @livewire('dipendenti-azienda-table', ['id_azienda' => $azienda->id])
+                </div>
+            @elseif ($activeTab == 3)
+                <div>
+                    @livewire('negozi-azienda-table', ['id_azienda' => $azienda->id])
                 </div>
             @endif
         </div>
