@@ -74,22 +74,22 @@
             <div class="nav-align-top">
                 <ul class="nav nav-pills flex-column flex-md-row mb-6">
                     <li class="nav-item">
-                        <a class="nav-link @if ($activeTab == 1) active @endif" wire:click="$set('activeTab', 1)">
+                        <a class="nav-link @if ($activeTab == 1) active @endif" wire:click="$set('activeTab', 1)" href="javascript:void(0);">
                             <i class="bx bx-building bx-sm me-1_5"></i>Informazioni
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ($activeTab == 2) active @endif" wire:click="$set('activeTab', 2)">
+                        <a class="nav-link @if ($activeTab == 2) active @endif" wire:click="$set('activeTab', 2)" href="javascript:void(0);">
                             <i class="bx bx-user bx-sm me-1_5"></i>Dipendenti
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ($activeTab == 3) active @endif" wire:click="$set('activeTab', 3)">
+                        <a class="nav-link @if ($activeTab == 3) active @endif" wire:click="$set('activeTab', 3)" href="javascript:void(0);">
                             <i class="bx bxs-group bx-sm me-1_5"></i>Gruppi
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @if ($activeTab == 4) active @endif" wire:click="$set('activeTab', 4)">
+                        <a class="nav-link @if ($activeTab == 4) active @endif" wire:click="$set('activeTab', 4)" href="javascript:void(0);">
                             <i class="bx bxs-buildings bx-sm me-1_5"></i>Punti vendita
                         </a>
                     </li>

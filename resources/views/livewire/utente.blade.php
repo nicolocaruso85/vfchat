@@ -46,6 +46,17 @@
                             </li>
 
                             <li class="mb-2">
+                                <span class="h6 me-1">Aziende:</span>
+                                <span>
+                                    @foreach ($this->aziende as $azienda)
+                                        <span class="badge bg-label-info">
+                                            {{ $azienda->nome }}
+                                        </span>
+                                    @endforeach
+                                </span>
+                            </li>
+
+                            <li class="mb-2">
                                 <span class="h6 me-1">Ruoli:</span>
                                 <span>
                                     @foreach ($this->ruoli as $ruolo)
@@ -57,11 +68,11 @@
                             </li>
 
                             <li class="mb-2">
-                                <span class="h6 me-1">Aziende:</span>
+                                <span class="h6 me-1">Gruppi:</span>
                                 <span>
-                                    @foreach ($this->aziende as $azienda)
-                                        <span class="badge bg-label-info">
-                                            {{ $azienda->nome }}
+                                    @foreach ($this->gruppi as $gruppo)
+                                        <span class="badge bg-label-secondary">
+                                            {{ $gruppo->name }}
                                         </span>
                                     @endforeach
                                 </span>

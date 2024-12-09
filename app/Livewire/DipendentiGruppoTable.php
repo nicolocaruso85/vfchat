@@ -3,22 +3,26 @@
 namespace App\Livewire;
 
 use App\Models\User;
-use App\Traits\AuthorizesRoleOrPermission;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
-class UtentiTable extends DataTableComponent
+class DipendentiGruppoTable extends DataTableComponent
 {
-    use AuthorizesRoleOrPermission;
+    public $id_azienda;
+    public $id_gruppo;
 
-    public $action = 'utente';
+    public $action = 'dipendente-gruppo';
 
     public function builder(): Builder
     {
-        return User::query();
+        return User::whereHas('aziende', function ($query) {
+            return $query->where('id_azienda', $this->id_azienda);
+        })
+        ->whereHas('teams', function ($query) {
+            return $query->where('team_id', $this->id_gruppo);
+        });
     }
 
     public function configure(): void
@@ -28,7 +32,7 @@ class UtentiTable extends DataTableComponent
         $this->setColumnSelectStatus(false);
         $this->setPerPage(10);
 
-        $this->setDefaultSort('name');
+        $this->setDefaultSort('id');
 
         $this->setTableAttributes([
             'class' => 'table table-rounded table-row-bordered border gy-4 gs-6 fs-6',
@@ -47,14 +51,16 @@ class UtentiTable extends DataTableComponent
             ];
         });
 
-        $this->setSearchPlaceholder('Cerca tra gli Utenti');
-        $this->setEmptyMessage('Nessun utente trovato, prova a cambiare la tua ricerca');
+        $this->setSearchPlaceholder('Cerca tra i Dipendenti');
+        $this->setEmptyMessage('Nessun dipendente trovato, prova a cambiare la tua ricerca');
 
         $this->setConfigurableAreas([
             'toolbar-right-start' => [
                 'partials.button.new', [
                     'action' => $this->action,
-                    'modal' => 'aggiungi-utente',
+                    'modal' => 'aggiungi-dipendente-gruppo',
+                    'id_azienda' => $this->id_azienda,
+                    'id_gruppo' => $this->id_gruppo,
                 ],
             ],
         ]);
@@ -63,32 +69,22 @@ class UtentiTable extends DataTableComponent
     public function columns(): array
     {
         return [
+            Column::make('Id', 'id')
+                ->sortable(),
+
             Column::make('Nome', 'name')
-                ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->sortable(),
 
             Column::make('Email', 'email')
-                ->searchable(),
-
-            Column::make('Aziende', 'id')
-                ->label(function($row, Column $column) {
-                    return implode(', ', $row->aziende()->pluck('nome')->toArray());
-                }),
-
-            Column::make('Ruoli', 'id')
-                ->label(function($row, Column $column) {
-                    return implode(', ', $row->getRoleNames()->toArray());
-                }),
-
-            Column::make('Gruppi', 'id')
-                ->label(function($row, Column $column) {
-                    return implode(', ', $row->teams()->pluck('name')->toArray());
-                }),
+                ->searchable()
+                ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
-                ->component('azioni-utenti')
+                ->component('azioni-dipendenti-gruppo')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
+                    'id_gruppo' => $this->id_gruppo,
                 ]),
         ];
     }

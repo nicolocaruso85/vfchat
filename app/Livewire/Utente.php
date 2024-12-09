@@ -27,6 +27,12 @@ class Utente extends Component
         return $this->user->aziende;
     }
 
+    #[Computed]
+    public function gruppi()
+    {
+        return $this->user->teams;
+    }
+
     public function render()
     {
         return view('livewire.utente');
