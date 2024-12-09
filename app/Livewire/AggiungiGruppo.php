@@ -2,37 +2,29 @@
 
 namespace App\Livewire;
 
-use App\Models\Negozio;
+use App\Models\Gruppo;
 use LivewireUI\Modal\ModalComponent;
 
-class AggiungiNegozio extends ModalComponent
+class AggiungiGruppo extends ModalComponent
 {
     public $id_azienda;
 
-    public $nome;
-    public $telefono;
-    public $indirizzo;
-    public $citta;
-    public $cap;
+    public $name;
 
     public function render()
     {
-        return view('livewire.aggiungi-negozio');
+        return view('livewire.aggiungi-gruppo');
     }
 
     public function create()
     {
         $validatedData = $this->validate([
-            'nome' => 'required',
-            'telefono' => '',
-            'indirizzo' => '',
-            'citta' => '',
-            'cap' => '',
+            'name' => 'required',
         ]);
 
-        $validatedData['id_azienda'] = $this->id_azienda;
+        $validatedData['owner_id'] = $this->id_azienda;
 
-        Negozio::create($validatedData);
+        Gruppo::create($validatedData);
 
         $this->dispatch('refreshDatatable');
 

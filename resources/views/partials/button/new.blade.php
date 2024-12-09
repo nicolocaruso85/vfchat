@@ -18,6 +18,15 @@
                     </span>
                 </span>
             </button>
+        @elseif ($action == 'gruppo-azienda')
+            <button class="btn btn-secondary add-new btn-primary ms-2" wire:click="$dispatch('openModal', { component: '{{ $modal }}', arguments: {{ json_encode(['id_azienda' => $id_azienda]) }} })">
+                <span>
+                    <i class="bx bx-plus bx-sm me-0 me-sm-2"></i>
+                    <span class="d-none d-sm-inline-block">
+                        {{ __('Aggiungi gruppo') }}
+                    </span>
+                </span>
+            </button>
         @elseif ($action == 'dipendente-ruolo')
             <button class="btn btn-secondary add-new btn-primary ms-2" wire:click="$dispatch('openModal', { component: '{{ $modal }}', arguments: {{ json_encode(['id_azienda' => $id_azienda, 'id_ruolo' => $id_ruolo]) }} })">
                 <span>

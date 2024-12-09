@@ -8,28 +8,11 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 
 class AggiungiPermission extends ModalComponent
 {
-    public $permission_id;
     public $name;
-
-    public function mount($permission_id = null)
-    {
-        $this->permission_id = $permission_id;
-        if ($this->permission_id != null) {
-            $this->edit();
-        }
-    }
 
     public function render()
     {
         return view('livewire.aggiungi-permission');
-    }
-
-    public function edit()
-    {
-        $permessi = ModelsPermission::findById($this->permission_id);
-        if ($permessi) {
-            $this->name = $permessi->name;
-        }
     }
 
     public function create()
@@ -40,16 +23,7 @@ class AggiungiPermission extends ModalComponent
 
         $validatedData['guard_name'] = 'web';
 
-        if ($this->permission_id == null) {
-            Permission::create($validatedData);
-        }
-        else {
-            $permission = ModelsPermission::find($this->permission_id);
-            if ($permission) {
-                $permission->name = $this->name;
-                $permission->save();
-            }
-        }
+        Permission::create($validatedData);
 
         $this->dispatch('refreshDatatable');
 

@@ -1,6 +1,6 @@
 <div class="p-10">
     <div class="modal-header">
-        <h5 class="modal-title">{{ __('Nuovo Negozio') }}</h5>
+        <h5 class="modal-title">{{ __('Modifica Negozio') }}</h5>
         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" wire:click="cancel">
             <span class="svg-icon svg-icon-2x">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,7 +12,7 @@
     </div>
 
     <div class="modal-body">
-        <form id="modifica-negozio-form" wire:submit="create">
+        <form id="modifica-negozio-form" wire:submit="update">
             <div class="fw-row mb-5">
                 <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Nome') }}</label>
                 <input type="text" class="form-control form-control-md" wire:model="nome" required>

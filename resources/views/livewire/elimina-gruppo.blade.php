@@ -1,7 +1,6 @@
 <div class="p-10">
     <div class="modal-header">
-        <h5 class="modal-title">{{ __('Nuovo Permesso') }}</h5>
-
+        <h5 class="modal-title">{{ __('Elimina Gruppo') }}</h5>
         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" wire:click="cancel">
             <span class="svg-icon svg-icon-2x">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -13,16 +12,11 @@
     </div>
 
     <div class="modal-body">
-        <form id="aggiungi-permission-form" wire:submit="create">
-            <div class="fw-row mb-5">
-                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Nome permesso') }}</label>
-                <input type="text" class="form-control form-control-md" wire:model.live="name" required>
-            </div>
-        </form>
+        <div class="fs-4 my-3">{{ __('Sei sicuro di voler eliminare questo Gruppo?') }}</div>
     </div>
 
     <div class="modal-footer">
         <button type="button" class="btn btn-light" wire:click="cancel">{{ __('Chiudi') }}</button>
-        <button type="submit" form="aggiungi-permission-form" class="btn btn-primary">{{ __('Salva') }}</button>
+        <button type="button" wire:click="delete" class="btn btn-danger">{{ __('Elimina') }}</button>
     </div>
 </div>

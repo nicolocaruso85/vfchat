@@ -85,6 +85,11 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @if ($activeTab == 3) active @endif" wire:click="$set('activeTab', 3)">
+                            <i class="bx bxs-group bx-sm me-1_5"></i>Gruppi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if ($activeTab == 4) active @endif" wire:click="$set('activeTab', 4)">
                             <i class="bx bxs-buildings bx-sm me-1_5"></i>Punti vendita
                         </a>
                     </li>
@@ -180,6 +185,10 @@
                     @livewire('dipendenti-azienda-table', ['id_azienda' => $azienda->id])
                 </div>
             @elseif ($activeTab == 3)
+                <div>
+                    @livewire('gruppi-azienda-table', ['id_azienda' => $azienda->id])
+                </div>
+            @elseif ($activeTab == 4)
                 <div>
                     @livewire('negozi-azienda-table', ['id_azienda' => $azienda->id])
                 </div>

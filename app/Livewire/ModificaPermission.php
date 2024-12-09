@@ -11,25 +11,17 @@ class ModificaPermission extends ModalComponent
     public $permission_id;
     public $name;
 
-    public function mount($permission_id = null)
+    public function mount($permission_id)
     {
         $this->permission_id = $permission_id;
-        if ($this->permission_id != null) {
-            $this->edit();
-        }
+
+        $permission = ModelsPermission::findById($this->permission_id);
+        $this->name = $permission->name;
     }
 
     public function render()
     {
         return view('livewire.modifica-permission');
-    }
-
-    public function edit()
-    {
-        $permessi = ModelsPermission::findById($this->permission_id);
-        if ($permessi) {
-            $this->name = $permessi->name;
-        }
     }
 
     public function create()
@@ -40,16 +32,8 @@ class ModificaPermission extends ModalComponent
 
         $validatedData['guard_name'] = 'web';
 
-        if ($this->permission_id == null) {
-            Permission::create($validatedData);
-        }
-        else {
-            $permission = ModelsPermission::find($this->permission_id);
-            if ($permission) {
-                $permission->name = $this->name;
-                $permission->save();
-            }
-        }
+        $permission = ModelsPermission::find($this->permission_id);
+        $permission->update($validatedData);
 
         $this->dispatch('refreshDatatable');
 

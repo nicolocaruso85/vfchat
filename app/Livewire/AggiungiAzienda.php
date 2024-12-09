@@ -28,7 +28,7 @@ class AggiungiAzienda extends ModalComponent
             'cap' => '',
         ]);
 
-        $azienda = Azienda::create($validatedData);
+        Azienda::create($validatedData);
 
         $this->dispatch('refreshDatatable');
 
