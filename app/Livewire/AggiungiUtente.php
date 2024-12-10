@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
@@ -19,7 +20,13 @@ class AggiungiUtente extends ModalComponent
 
     public function mount()
     {
-        $this->roles = Role::all();
+        $this->roles = Role::all()->pluck('name', 'id')->toArray();
+    }
+
+    #[On('changeRuoli')]
+    public function changeRuoli($data)
+    {
+        $this->ruoli = $data['data'];
     }
 
     public function create()

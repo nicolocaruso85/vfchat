@@ -1,4 +1,4 @@
-<div class="p-10" wire:init="$dispatch('applySelect2')">
+<div class="p-10">
     <div class="modal-header">
         <h5 class="modal-title">{{ __('Modifica Utente') }}</h5>
 
@@ -36,11 +36,8 @@
             </div>
             <div class="fw-row mb-5" wire:ignore>
                 <label class="form-label fs-6 fw-bolder text-dark">{{ __('Ruoli') }}</label>
-                <select id="ruoli" class="form-select" wire:model.live="ruoli" multiple>
-                    @foreach ($roles as $r)
-                        <option value="{{ $r->id }}">{{ $r->name }}</option>
-                    @endforeach
-                </select>
+
+                <livewire:select-2 :options="$this->roles" name="ruoli" :model="$this->ruoli" onchange="changeRuoli" multiple/>
             </div>
         </form>
     </div>
@@ -50,27 +47,3 @@
         <button type="submit" form="modifica-utente-form" class="btn btn-primary">{{ __('Salva') }}</button>
     </div>
 </div>
-
-@script
-    <script>
-        $wire.on('applySelect2', function() {
-            setTimeout(function() {
-                var el = $('#ruoli');
-                el.off('change');
-                initRuoliSelect();
-
-                el.on('change', function (e) {
-                    $wire.set('ruoli', el.select2('val'));
-                });
-
-                function initRuoliSelect() {
-                    el.select2({
-                        placeholder: '{{__('Seleziona i ruoli...')}}',
-                        allowClear: !el.attr('required'),
-                        dropdownParent: el.parent(),
-                    });
-                }
-            }, 200);
-        });
-    </script>
-@endscript
