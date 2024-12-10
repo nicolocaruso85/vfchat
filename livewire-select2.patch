@@ -1,0 +1,12 @@
+diff --git a/src/Components/Select2Component.php b/src/Components/Select2Component.php
+index 2e0e8cc..ecce463 100644
+--- a/src/Components/Select2Component.php
++++ b/src/Components/Select2Component.php
+@@ -12,7 +12,7 @@ class Select2Component extends Component
+ 
+     public ?string $name = null;
+ 
+-    public ?string $model = null;
++    public string|array|null $model = null;
+ 
+     public ?array $options = [];

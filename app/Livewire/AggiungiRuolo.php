@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -15,7 +16,16 @@ class AggiungiRuolo extends ModalComponent
 
     public function mount()
     {
-        $this->permissions = Permission::all();
+        $this->permissions = [];
+        foreach (Permission::all() as $permission) {
+            $this->permissions[$permission->name] = $permission->name;
+        }
+    }
+
+    #[On('changeSelPermissions')]
+    public function changeSelPermissions($data)
+    {
+        $this->sel_permission = $data['data'];
     }
 
     public function render()

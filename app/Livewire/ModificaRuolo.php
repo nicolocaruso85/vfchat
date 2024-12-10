@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -18,7 +19,10 @@ class ModificaRuolo extends ModalComponent
 
     public function mount()
     {
-        $this->permissions = Permission::all();
+        $this->permissions = [];
+        foreach (Permission::all() as $permission) {
+            $this->permissions[$permission->name] = $permission->name;
+        }
 
         $this->role = Role::find($this->role_id);
 
@@ -27,7 +31,14 @@ class ModificaRuolo extends ModalComponent
         $this->sel_permission = Permission::join('role_has_permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
             ->where('role_has_permissions.role_id', $this->role_id)
             ->get()
-            ->pluck('id');
+            ->pluck('name')
+            ->toArray();
+    }
+
+    #[On('changeSelPermissions')]
+    public function changeSelPermissions($data)
+    {
+        $this->sel_permission = $data['data'];
     }
 
     public function render()

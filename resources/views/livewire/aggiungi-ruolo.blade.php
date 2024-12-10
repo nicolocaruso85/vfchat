@@ -1,4 +1,4 @@
-<div class="p-10" wire:init="$dispatch('applySelect2')">
+<div class="p-10">
     <div class="modal-header">
         <h5 class="modal-title">{{ __('Nuovo Ruolo') }}</h5>
         <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" wire:click="cancel">
@@ -19,11 +19,8 @@
             </div>
             <div class="fw-row mb-5" wire:ignore>
                 <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Permessi del ruolo') }}</label>
-                <select id="permit" class="form-select" wire:model.live="sel_permission" multiple>
-                    @foreach ($permissions as $p)
-                        <option value="{{ $p->id }}">{{ $p->name }}</option>
-                    @endforeach
-                </select>
+
+                <livewire:select-2 :options="$this->permissions" name="permissions" onchange="changeSelPermissions" multiple/>
             </div>
         </form>
     </div>
@@ -33,27 +30,3 @@
         <button type="submit" form="aggiungi-progetto-form" class="btn btn-primary">{{ __('Salva') }}</button>
     </div>
 </div>
-
-@script
-    <script>
-        $wire.on('applySelect2', function() {
-            setTimeout(function() {
-                var el = $('#permit');
-                el.off('change');
-                initPermitSelect();
-
-                el.on('change', function (e) {
-                    $wire.set('sel_permission', el.select2('val'));
-                });
-
-                function initPermitSelect() {
-                    el.select2({
-                        placeholder: '{{__('Seleziona i permessi...')}}',
-                        allowClear: !el.attr('required'),
-                        dropdownParent: el.parent(),
-                    });
-                }
-            }, 200);
-        });
-    </script>
-@endscript
