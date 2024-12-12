@@ -7,13 +7,12 @@
 }
 
 // Modal Header close btn style
-.modal {
+#modal-container {
   .btn-close {
     background-color: $card-bg;
     border-radius: $border-radius-sm;
     background-image: str-replace(str-replace($btn-close-bg, '#{$btn-close-color}', $text-muted), '#', '%23');
     opacity: 1;
-    padding: 0.563rem;
     box-shadow: $box-shadow-xs;
     background-size: 0.75rem 0.6875rem;
     transition: all 0.23s ease 0.1s;
@@ -38,7 +37,7 @@
     position: relative;
     .btn-close {
       position: absolute;
-      top: $modal-dialog-margin + 0.1875rem;
+      top: $modal-dialog-margin - 0.4875rem;
       right: $modal-footer-margin-between - 0.1875rem;
     }
   }
@@ -49,12 +48,6 @@
   padding: $modal-footer-padding;
   > * {
     margin-block: 0;
-    &:last-child {
-      margin-left: 0;
-    }
-    &:first-child {
-      margin-right: 0;
-    }
   }
 }
 

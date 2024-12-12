@@ -9,12 +9,12 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 class ModificaPermission extends ModalComponent
 {
     public $permission_id;
+
     public $name;
+    public $description;
 
-    public function mount($permission_id)
+    public function mount()
     {
-        $this->permission_id = $permission_id;
-
         $permission = ModelsPermission::findById($this->permission_id);
         $this->name = $permission->name;
     }
@@ -28,9 +28,8 @@ class ModificaPermission extends ModalComponent
     {
         $validatedData = $this->validate([
             'name' => 'required',
+            'description' => '',
         ]);
-
-        $validatedData['guard_name'] = 'web';
 
         $permission = ModelsPermission::find($this->permission_id);
         $permission->update($validatedData);

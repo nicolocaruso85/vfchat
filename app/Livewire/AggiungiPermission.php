@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Permission as ModelsPermission;
 class AggiungiPermission extends ModalComponent
 {
     public $name;
+    public $description;
 
     public function render()
     {
@@ -19,6 +20,7 @@ class AggiungiPermission extends ModalComponent
     {
         $validatedData = $this->validate([
             'name' => 'required',
+            'description' => '',
         ]);
 
         $validatedData['guard_name'] = 'web';

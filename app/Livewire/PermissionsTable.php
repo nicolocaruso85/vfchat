@@ -58,6 +58,10 @@ class PermissionsTable extends DataTableComponent
             Column::make('Id', 'id')
                 ->sortable(),
 
+            Column::make('Descrizione', 'description')
+                ->searchable()
+                ->sortable(),
+
             Column::make('Nome', 'name')
                 ->searchable()
                 ->sortable(),

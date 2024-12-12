@@ -40,10 +40,10 @@
             'rounded-t-md': open,
             'bg-gray-200 cursor-default': disabled
         }"
-        {{ $attributes->class('block w-full border border-gray-300 rounded-md shadow-sm focus:ring-0 focus:ring-gray-400 focus:border-gray-400 sm:text-sm sm:leading-5')->only('class'); }}
+        {{ $attributes->class('block w-full border border-secondary rounded-md focus:ring-0 focus:ring-gray-400 focus:border-gray-400 sm:text-sm sm:leading-5')->only('class'); }}
     > 
         <div x-show="!selected || selected.length === 0" class="flex flex-wrap">
-            <div class="text-gray-800 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
+            <div class="bg-white text-gray-800 rounded-sm w-full truncate p-2 my-0.5 flex flex-row items-center">
                 <div class="w-full px-2 truncate dark:text-gray-500" x-text="placeholder">&nbsp;</div>
                 <div x-show="!disabled" x-bind:class="{ 'cursor-pointer': !disabled }" class="h-6" x-on:click.prevent.stop="toggleSelect()">
                     @include('simple-select::components.caret-icons')
@@ -82,7 +82,7 @@
             </div>
         @else            
             <div x-show="selected" class="flex flex-wrap"> 
-                <div class="text-gray-800 dark:text-gray-400 rounded-sm w-full truncate px-2 py-0.5 my-0.5 flex flex-row items-center">
+                <div class="bg-white text-gray-800 rounded-sm w-full truncate p-2 my-0.5 flex flex-row items-center">
                     {{-- Invisible input for standard form submission of values --}}
                     <input type="text" :name="name" x-model="selected" :required="required" style="display: none;" />
                     <div class="w-full px-2 truncate">
@@ -127,7 +127,7 @@
                 x-model="search"
                 x-on:click.prevent.stop="open=true"
                 :placeholder="searchInputPlaceholder"
-                class="block w-full p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 dark:text-gray-200 shadow-md focus:border-gray-200 focus:ring-0 sm:text-sm sm:leading-5"
+                class="block w-full p-2 bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 dark:text-gray-200 shadow-md focus:border-gray-200 focus:ring-0 sm:text-sm sm:leading-5 outline-none"
             />
             <ul                
                 x-ref="simpleSelectOptionsList"

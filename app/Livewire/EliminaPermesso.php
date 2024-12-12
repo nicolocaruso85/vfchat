@@ -2,17 +2,16 @@
 
 namespace App\Livewire;
 
-use App\Models\Role;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
 
-class DeleteRole extends ModalComponent
+class EliminaPermesso extends ModalComponent
 {
-    public $role_id;
+    public $permission_id;
 
-    public function mount($role_id)
+    public function mount($permission_id)
     {
-        $this->role_id = $role_id;
+        $this->permission_id = $permission_id;
     }
 
     public function cancel()
@@ -22,12 +21,12 @@ class DeleteRole extends ModalComponent
 
     public function render()
     {
-        return view('livewire.delete-role');
+        return view('livewire.elimina-permesso');
     }
 
     public function delete()
     {
-        Role::find($this->role_id)->delete();
+        Permission::find($this->permission_id)->delete();
 
         $this->dispatch('refreshDatatable');
         $this->closeModal();

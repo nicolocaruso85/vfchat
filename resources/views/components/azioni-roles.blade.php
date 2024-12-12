@@ -3,7 +3,7 @@
         <i class="bx bx-edit bx-md"></i>
     </button>
 
-    <button class="btn btn-icon btn-light-danger btn-sm" title="Elimina" wire:click="$dispatch('openModal', { component: 'delete-role', arguments: {{ json_encode(['role_id' => $attributes['value']]) }} })">
+    <button class="btn btn-icon btn-light-danger btn-sm" title="Elimina" wire:click="$dispatch('openModal', { component: 'elimina-ruolo', arguments: {{ json_encode(['role_id' => $attributes['value']]) }} })">
         <i class="bx bx-trash bx-md"></i>
     </button>
 </div>

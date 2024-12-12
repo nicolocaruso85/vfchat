@@ -3,7 +3,7 @@
         <i class="bx bx-edit bx-md"></i>
     </button>
 
-    <button class="btn btn-icon btn-light-danger btn-sm" title="Elimina" wire:click="$dispatch('openModal', { component: 'delete-permission', arguments: {{ json_encode(['permission_id' => $attributes['value']]) }} })">
+    <button class="btn btn-icon btn-light-danger btn-sm" title="Elimina" wire:click="$dispatch('openModal', { component: 'elimina-permesso', arguments: {{ json_encode(['permission_id' => $attributes['value']]) }} })">
         <i class="bx bx-trash bx-md"></i>
     </button>
 </div>
