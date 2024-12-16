@@ -2,11 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Models\Permission;
 use App\Traits\AuthorizesRoleOrPermission;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
+use Spatie\Permission\Models\Permission;
 
 class PermissionsTable extends DataTableComponent
 {

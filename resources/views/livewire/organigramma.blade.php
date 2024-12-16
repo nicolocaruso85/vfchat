@@ -15,7 +15,7 @@
     @if ($id_azienda)
         <h5 class="mb-0 mt-5">{{ __('Ruoli') }}</h5>
         <div class="accordion mt-4" id="accordion-ruoli">
-            @foreach ($ruoli as $i => $ruolo)
+            @foreach ($this->ruoli as $i => $ruolo)
                 <div class="card accordion-item">
                     <h2 class="accordion-header">
                         <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-ruolo-{{ $i }}" aria-expanded="false" aria-controls="accordionOne">

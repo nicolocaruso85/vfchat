@@ -2,9 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\Permission;
 use LivewireUI\Modal\ModalComponent;
-use Spatie\Permission\Models\Permission as ModelsPermission;
+use Spatie\Permission\Models\Permission;
 
 class AggiungiPermission extends ModalComponent
 {

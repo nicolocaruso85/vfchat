@@ -3,19 +3,23 @@
 namespace App\Livewire;
 
 use App\Traits\AuthorizesRoleOrPermission;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 use Spatie\Permission\Models\Role;
 
-class RuoliTable extends DataTableComponent
+class RuoliAziendaTable extends DataTableComponent
 {
     use AuthorizesRoleOrPermission;
 
-    protected $model = Role::class;
+    public $id_azienda;
 
-    public $action = 'ruolo';
+    public function builder(): Builder
+    {
+        return Role::where('team_id', $this->id_azienda);
+    }
 
     public function configure(): void
     {
@@ -45,31 +49,23 @@ class RuoliTable extends DataTableComponent
 
         $this->setSearchPlaceholder('Cerca tra i Ruoli');
         $this->setEmptyMessage('Nessun ruolo trovato, prova a cambiare la tua ricerca');
-
-        $this->setConfigurableAreas([
-            'toolbar-right-start' => [
-                'partials.button.new', [
-                    'modal'  => 'aggiungi-ruolo',
-                    'action' => $this->action,
-                ],
-            ],
-        ]);
     }
 
     public function columns(): array
     {
         return [
             Column::make('Id', 'id')
-                ->sortable(),
+                ->hideIf(true),
 
-            Column::make('Nome', 'name')
+            Column::make('Ruolo', 'name')
                 ->searchable()
                 ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
-                ->component('azioni-roles')
+                ->component('azioni-ruoli-azienda')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
+                    'id_azienda' => $this->id_azienda,
                 ]),
         ];
     }

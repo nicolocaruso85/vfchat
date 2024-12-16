@@ -93,6 +93,11 @@
                             <i class="bx bxs-buildings bx-sm me-1_5"></i>Punti vendita
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link @if ($activeTab == 5) active @endif" wire:click="$set('activeTab', 5)" href="javascript:void(0);">
+                            <i class="bx bx-lock-open-alt bx-sm me-1_5"></i>Permessi
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -191,6 +196,10 @@
             @elseif ($activeTab == 4)
                 <div>
                     @livewire('negozi-azienda-table', ['id_azienda' => $azienda->id])
+                </div>
+            @elseif ($activeTab == 5)
+                <div>
+                    @livewire('ruoli-azienda-table', ['id_azienda' => $azienda->id])
                 </div>
             @endif
         </div>

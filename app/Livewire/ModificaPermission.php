@@ -2,9 +2,8 @@
 
 namespace App\Livewire;
 
-use App\Models\Permission;
 use LivewireUI\Modal\ModalComponent;
-use Spatie\Permission\Models\Permission as ModelsPermission;
+use Spatie\Permission\Models\Permission;
 
 class ModificaPermission extends ModalComponent
 {
@@ -15,7 +14,7 @@ class ModificaPermission extends ModalComponent
 
     public function mount()
     {
-        $permission = ModelsPermission::findById($this->permission_id);
+        $permission = Permission::findById($this->permission_id);
         $this->name = $permission->name;
     }
 
@@ -31,7 +30,7 @@ class ModificaPermission extends ModalComponent
             'description' => '',
         ]);
 
-        $permission = ModelsPermission::find($this->permission_id);
+        $permission = Permission::find($this->permission_id);
         $permission->update($validatedData);
 
         $this->dispatch('refreshDatatable');

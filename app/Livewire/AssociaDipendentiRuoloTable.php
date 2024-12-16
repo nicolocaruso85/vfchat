@@ -2,12 +2,12 @@
 
 namespace App\Livewire;
 
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
+use Spatie\Permission\Models\Role;
 
 class AssociaDipendentiRuoloTable extends DataTableComponent
 {

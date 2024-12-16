@@ -4,22 +4,20 @@ namespace App\Livewire;
 
 use App\Models\Azienda;
 use App\Models\Gruppo;
-use App\Models\Role;
 use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Spatie\Permission\Models\Role;
 
 class Organigramma extends Component
 {
     public $aziende;
-    public $ruoli;
 
     public $id_azienda;
 
     public function mount()
     {
         $this->aziende = Azienda::select('id', 'nome')->get()->toArray();
-        $this->ruoli = Role::all();
     }
 
     public function usersPerRuolo($id_ruolo)
@@ -47,7 +45,13 @@ class Organigramma extends Component
     #[Computed]
     public function gruppi()
     {
-        return Gruppo::where('owner_id', $this->id_azienda)->get();
+        return Gruppo::where('owner_id', $this->id_azienda)->orderBy('id')->get();
+    }
+
+    #[Computed]
+    public function ruoli()
+    {
+        return Role::where('team_id', $this->id_azienda)->orderBy('id')->get();
     }
 
     public function render()

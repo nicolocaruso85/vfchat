@@ -403,10 +403,6 @@ html:not(.layout-footer-fixed) .content-wrapper {
   .layout-navbar-full .layout-navbar {
     z-index: $zindex-menu-fixed;
   }
-
-  .layout-content-navbar .layout-navbar {
-    z-index: $zindex-menu-fixed - 5;
-  }
 }
 
 // Footer (fixed)

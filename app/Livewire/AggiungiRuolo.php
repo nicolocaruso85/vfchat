@@ -43,6 +43,10 @@ class AggiungiRuolo extends ModalComponent
         $role = Role::create($validatedData);
         $role->syncPermissions($this->sel_permission);
 
+        Permission::create('ruolo.' . $role->id . '.messaggi');
+        Permission::create('ruolo.' . $role->id . '.immagini');
+        Permission::create('ruolo.' . $role->id . '.file');
+
         $this->dispatch('refreshDatatable');
 
         $this->closeModal();
