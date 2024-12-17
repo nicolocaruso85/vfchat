@@ -28,22 +28,22 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_aziende.create">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_aziende.create">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_aziende.update">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_aziende.update">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_aziende.delete">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_aziende.delete">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_aziende.tutti">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_aziende.tutti">
                         </div>
                     </td>
                 </tr>
@@ -53,22 +53,22 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_ruoli.create">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_ruoli.create">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_ruoli.update">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_ruoli.update">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_ruoli.delete">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_ruoli.delete">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_ruoli.tutti">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_ruoli.tutti">
                         </div>
                     </td>
                 </tr>
@@ -78,22 +78,22 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_utenti.create">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_utenti.create">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_utenti.update">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_utenti.update">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_utenti.delete">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_utenti.delete">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_utenti.tutti">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_utenti.tutti">
                         </div>
                     </td>
                 </tr>
@@ -103,22 +103,22 @@
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_quiz.create">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_quiz.create">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox" wire:model="operazioni_quiz.update">
+                            <input class="form-check-input" type="checkbox" wire:model.live="operazioni_quiz.update">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox"  wire:model="operazioni_quiz.delete">
+                            <input class="form-check-input" type="checkbox"  wire:model.live="operazioni_quiz.delete">
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                            <input class="form-check-input" type="checkbox"  wire:model="operazioni_quiz.tutti">
+                            <input class="form-check-input" type="checkbox"  wire:model.live="operazioni_quiz.tutti">
                         </div>
                     </td>
                 </tr>
@@ -142,22 +142,22 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_ruoli.{{ $ruolo->id }}.messaggi">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_ruoli.{{ $ruolo->id }}.messaggi">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_ruoli.{{ $ruolo->id }}.immagini">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_ruoli.{{ $ruolo->id }}.immagini">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_ruoli.{{ $ruolo->id }}.file">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_ruoli.{{ $ruolo->id }}.file">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_ruoli.{{ $ruolo->id }}.tutti">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_ruoli.{{ $ruolo->id }}.tutti">
                             </div>
                         </td>
                     </tr>
@@ -182,22 +182,22 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_gruppi.{{ $gruppo->id }}.messaggi">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_gruppi.{{ $gruppo->id }}.messaggi">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_gruppi.{{ $gruppo->id }}.immagini">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_gruppi.{{ $gruppo->id }}.immagini">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_gruppi.{{ $gruppo->id }}.file">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_gruppi.{{ $gruppo->id }}.file">
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
-                                <input class="form-check-input" type="checkbox" wire:model="permessi_gruppi.{{ $gruppo->id }}.tutti">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_gruppi.{{ $gruppo->id }}.tutti">
                             </div>
                         </td>
                     </tr>
