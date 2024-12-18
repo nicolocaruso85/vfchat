@@ -22,6 +22,8 @@ class Organigramma extends Component
 
     public function usersPerRuolo($id_ruolo)
     {
+        setPermissionsTeamId($this->id_azienda);
+
         return User::whereHas('aziende', function ($query) {
             return $query->where('id_azienda', $this->id_azienda);
         })

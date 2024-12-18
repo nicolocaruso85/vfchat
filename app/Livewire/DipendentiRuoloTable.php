@@ -17,6 +17,8 @@ class DipendentiRuoloTable extends DataTableComponent
 
     public function builder(): Builder
     {
+        setPermissionsTeamId($this->id_azienda);
+
         return User::whereHas('aziende', function ($query) {
             return $query->where('id_azienda', $this->id_azienda);
         })

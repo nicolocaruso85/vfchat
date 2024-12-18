@@ -18,6 +18,10 @@ class Utente extends Component
     #[Computed]
     public function ruoli()
     {
+        if ($azienda = $this->user->aziende->first()) {
+            setPermissionsTeamId($azienda->id);
+        }
+
         return $this->user->getRoleNames();
     }
 

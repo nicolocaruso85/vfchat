@@ -78,6 +78,7 @@ class AssociaDipendentiRuoloTable extends DataTableComponent
         $user = User::find($id_utente);
         $role = Role::find($this->id_ruolo);
 
+        setPermissionsTeamId($this->id_azienda);
         $user->assignRole($role->name);
 
         $this->dispatch('refreshDatatable');
