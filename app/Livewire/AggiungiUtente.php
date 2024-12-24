@@ -6,16 +6,22 @@ use App\Jobs\InviaUtenteToFirebase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
 class AggiungiUtente extends ModalComponent
 {
+    use WithFileUploads;
+
     public $name;
     public $email;
     public $password;
     public $confirm_password;
+    public $photo;
     public $ruoli = [];
+
+    public $photo_url;
 
     public $roles = [];
 
@@ -41,6 +47,10 @@ class AggiungiUtente extends ModalComponent
 
         $validatedData['password'] = Hash::make($this->password);
 
+        if ($this->photo) {
+            $validatedData['photo'] = $this->photo->store('/', 'fotoutenti');
+        }
+
         $user = User::create($validatedData);
 
         $user->syncRoles(array_map('intval', $this->ruoli));
@@ -55,6 +65,11 @@ class AggiungiUtente extends ModalComponent
     public function cancel()
     {
         $this->closeModal();
+    }
+
+    public function updatedPhoto()
+    {
+        $this->photo_url = $this->photo->temporaryUrl();
     }
 
     public function render()

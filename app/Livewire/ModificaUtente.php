@@ -4,19 +4,26 @@ namespace App\Livewire;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\On;
+use Livewire\WithFileUploads;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
 class ModificaUtente extends ModalComponent
 {
+    use WithFileUploads;
+
     public $user;
 
     public $name;
     public $email;
     public $password;
     public $confirm_password;
+    public $photo;
     public $ruoli;
+
+    public $photo_url;
 
     public $roles = [];
 
@@ -31,6 +38,10 @@ class ModificaUtente extends ModalComponent
         $this->citta = ($user->info) ? $user->info->citta : null;
         $this->provincia = ($user->info) ? $user->info->provincia : null;
         $this->ruoli = $user->roles->pluck('id')->all();
+
+        if ($user->photo) {
+            $this->photo_url = Storage::url('fotoutenti/' . $user->photo);
+        }
 
         $this->roles = Role::all()->pluck('name', 'id')->toArray();
     }
@@ -57,6 +68,10 @@ class ModificaUtente extends ModalComponent
             unset($validatedData['password']);
         }
 
+        if ($this->photo) {
+            $validatedData['photo'] = $this->photo->store('/', 'fotoutenti');
+        }
+
         $this->user->update($validatedData);
 
         $this->user->syncRoles(array_map('intval', $this->ruoli));
@@ -69,6 +84,11 @@ class ModificaUtente extends ModalComponent
     public function cancel()
     {
         $this->closeModal();
+    }
+
+    public function updatedPhoto()
+    {
+        $this->photo_url = $this->photo->temporaryUrl();
     }
 
     public function render()

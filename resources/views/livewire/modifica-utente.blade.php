@@ -33,6 +33,15 @@
                 <input type="password" class="form-control form-control-md" wire:model.live="confirm_password">
                 @error('confirm_password') <span class="text-danger">{{ $message }}</span> @enderror
             </div>
+            <div class="fw-row mb-5">
+                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Foto profilo') }}</label>
+                <input type="file" class="form-control form-control-md" wire:model.live="photo" accept="image/*">
+                @error('photo') <span class="text-danger">{{ $message }}</span> @enderror
+
+                @if ($photo_url)
+                    <img class="mt-2 w-25" src="{{ $photo_url }}">
+                @endif
+            </div>
             <div class="fw-row mb-5" wire:ignore>
                 <label class="form-label fs-6 fw-bolder text-dark">{{ __('Ruoli') }}</label>
 

@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Storage;
 
 class InviaUtenteToFirebase implements ShouldQueue
 {
@@ -29,6 +30,7 @@ class InviaUtenteToFirebase implements ShouldQueue
             'email' => $user->email,
             'password' => $this->password,
             'displayName' => $user->name,
+            'photoURL' => ($user->photo) ? Storage::url('fotoutenti/' . $user->photo) : null,
         ]);
 
         $user->update([
