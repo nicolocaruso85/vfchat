@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\InviaUtenteToFirebase;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Attributes\On;
@@ -45,6 +46,8 @@ class AggiungiUtente extends ModalComponent
         $user->syncRoles(array_map('intval', $this->ruoli));
 
         $this->dispatch('refreshDatatable');
+
+        InviaUtenteToFirebase::dispatch($user->id, $this->password);
 
         $this->closeModal();
     }

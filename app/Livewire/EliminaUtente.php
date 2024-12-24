@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\EliminaUtenteFromFirebase;
 use App\Models\User;
 use LivewireUI\Modal\ModalComponent;
 
@@ -11,9 +12,15 @@ class EliminaUtente extends ModalComponent
 
     public function delete()
     {
-        User::find($this->user_id)->delete();
+        $user = User::find($this->user_id);
+        $firebase_uid = $user->firebase_uid;
+
+        $user->delete();
 
         $this->dispatch('refreshDatatable');
+
+        EliminaUtenteFromFirebase::dispatch($firebase_uid);
+
         $this->closeModal();
     }
 
