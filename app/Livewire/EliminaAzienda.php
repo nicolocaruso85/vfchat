@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\EliminaAziendaFromFirebase;
 use App\Models\Azienda;
 use LivewireUI\Modal\ModalComponent;
 
@@ -11,9 +12,15 @@ class EliminaAzienda extends ModalComponent
 
     public function delete()
     {
-        Azienda::find($this->azienda_id)->delete();
+        $azienda = Azienda::find($this->azienda_id);
+        $firebase_uid = $azienda->firebase_uid;
+
+        $azienda->delete();
 
         $this->dispatch('refreshDatatable');
+
+        EliminaAziendaFromFirebase::dispatch($firebase_uid);
+
         $this->closeModal();
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\InviaAziendaToFirebase;
 use App\Models\Azienda;
 use LivewireUI\Modal\ModalComponent;
 
@@ -28,9 +29,11 @@ class AggiungiAzienda extends ModalComponent
             'cap' => '',
         ]);
 
-        Azienda::create($validatedData);
+        $azienda = Azienda::create($validatedData);
 
         $this->dispatch('refreshDatatable');
+
+        InviaAziendaToFirebase::dispatch($azienda->id);
 
         $this->closeModal();
     }

@@ -18,6 +18,7 @@ class Azienda extends Model
         'indirizzo',
         'citta',
         'cap',
+        'firebase_uid',
     ];
 
     public function dipendenti()
