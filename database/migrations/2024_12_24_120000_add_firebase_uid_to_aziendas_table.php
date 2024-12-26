@@ -14,7 +14,7 @@ class AddFirebaseUidToAziendasTable extends Migration
     public function up()
     {
         Schema::table('aziendas', function (Blueprint $table) {
-            $table->text('firebase_uid')->nullable();
+            $table->string('firebase_uid')->nullable();
         });
     }
 

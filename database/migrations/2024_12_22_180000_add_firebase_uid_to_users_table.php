@@ -14,7 +14,7 @@ class AddFirebaseUidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('firebase_uid')->nullable();
+            $table->string('firebase_uid')->nullable();
         });
     }
 

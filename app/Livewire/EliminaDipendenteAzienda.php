@@ -12,9 +12,13 @@ class EliminaDipendenteAzienda extends ModalComponent
 
     public function delete()
     {
-        DipendentiAzienda::where('id_azienda', $this->id_azienda)
+        $dipendentiAzienda = DipendentiAzienda::where('id_azienda', $this->id_azienda)
             ->where('id_dipendente', $this->id_dipendente)
-            ->delete();
+            ->first();
+
+        if ($dipendentiAzienda) {
+            $dipendentiAzienda->delete();
+        }
 
         $this->dispatch('refreshDatatable');
         $this->closeModal();

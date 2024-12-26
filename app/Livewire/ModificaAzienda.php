@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\AggiornaAziendaToFirebase;
 use App\Models\Azienda;
 use LivewireUI\Modal\ModalComponent;
 
@@ -45,6 +46,8 @@ class ModificaAzienda extends ModalComponent
         $this->azienda->update($validatedData);
 
         $this->dispatch('refreshDatatable');
+
+        AggiornaAziendaToFirebase::dispatch($this->azienda->id);
 
         $this->closeModal();
     }
