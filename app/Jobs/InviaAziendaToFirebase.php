@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Azienda;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Spatie\Permission\Models\Role;
 
 class InviaAziendaToFirebase implements ShouldQueue
 {
@@ -24,6 +25,14 @@ class InviaAziendaToFirebase implements ShouldQueue
         $firestore = app('firebase.firestore');
         $database = $firestore->database();
 
+        $ruoli = [];
+        foreach (Role::where('team_id', $this->id_azienda)->get() as $ruolo) {
+            $ruoli[] = [
+                'id' => $ruolo->id,
+                'nome' => $ruolo->name,
+            ];
+        }
+
         $createdAzienda = $database->collection('aziende')
             ->add([
                 'nome' => $azienda->nome,
@@ -31,6 +40,7 @@ class InviaAziendaToFirebase implements ShouldQueue
                 'indirizzo' => $azienda->indirizzo,
                 'citta' => $azienda->citta,
                 'cap' => $azienda->cap,
+                'ruoli' => $ruoli,
             ]);
 
         $azienda->update(['firebase_uid' => $createdAzienda->id()]);
