@@ -37,7 +37,7 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
                 }
                 if (isset($data['name'])) {
                     $user->update([
-                        'photo' => $data['name'],
+                        'name' => $data['name'],
                     ]);
                 }
             }
