@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -35,6 +36,18 @@ class Utente extends Component
     public function gruppi()
     {
         return $this->user->teams;
+    }
+
+    #[Computed]
+    public function photo()
+    {
+        if ($this->user->photo) {
+            if (isset(parse_url($this->user->photo)['host'])) {
+                return $this->user->photo;
+            }
+
+            return Storage::url('fotoutenti/' . $this->user->photo);
+        }
     }
 
     public function render()

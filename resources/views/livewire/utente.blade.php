@@ -5,7 +5,11 @@
                 <div class="card-body pt-12">
                     <div class="customer-avatar-section">
                         <div class="d-flex align-items-center flex-column">
-                            <img class="img-fluid rounded mb-4" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" height="120" width="120" alt="User avatar">
+                            @if ($this->photo)
+                                <img class="img-fluid rounded mb-4" src="{{ $this->photo }}" height="120" width="120" alt="User avatar">
+                            @else
+                                <img class="img-fluid rounded mb-4" src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png" height="120" width="120" alt="User avatar">
+                            @endif
 
                             <div class="customer-info text-center mb-6">
                                 <h5 class="mb-0">{{ $user->name }}</h5>
