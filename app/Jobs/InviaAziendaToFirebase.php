@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Azienda;
+use App\Models\Gruppo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Spatie\Permission\Models\Role;
@@ -33,6 +34,14 @@ class InviaAziendaToFirebase implements ShouldQueue
             ];
         }
 
+        $gruppi = [];
+        foreach (Gruppo::where('owner_id', $this->id_azienda)->get() as $gruppo) {
+            $gruppi[] = [
+                'id' => $gruppo->id,
+                'nome' => $gruppo->name,
+            ];
+        }
+
         $createdAzienda = $database->collection('aziende')
             ->add([
                 'nome' => $azienda->nome,
@@ -41,6 +50,7 @@ class InviaAziendaToFirebase implements ShouldQueue
                 'citta' => $azienda->citta,
                 'cap' => $azienda->cap,
                 'ruoli' => $ruoli,
+                'gruppi' => $gruppi,
             ]);
 
         $azienda->update(['firebase_uid' => $createdAzienda->id()]);

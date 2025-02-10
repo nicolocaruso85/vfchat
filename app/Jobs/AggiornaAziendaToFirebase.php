@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\Azienda;
+use App\Models\Gruppo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 
@@ -21,6 +22,14 @@ class AggiornaAziendaToFirebase implements ShouldQueue
     {
         $azienda = Azienda::find($this->id_azienda);
 
+        $gruppi = [];
+        foreach (Gruppo::where('owner_id', $this->id_azienda)->get() as $gruppo) {
+            $gruppi[] = [
+                'id' => $gruppo->id,
+                'nome' => $gruppo->name,
+            ];
+        }
+
         $firestore = app('firebase.firestore');
         $database = $firestore->database();
 
@@ -32,6 +41,7 @@ class AggiornaAziendaToFirebase implements ShouldQueue
                 'indirizzo' => $azienda->indirizzo,
                 'citta' => $azienda->citta,
                 'cap' => $azienda->cap,
+                'gruppi' => $gruppi,
             ]);
     }
 }
