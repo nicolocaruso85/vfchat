@@ -11,7 +11,7 @@ class PermissionController extends Controller
     public function checkPermission($sender, $receiver, $team, $action)
     {
         if ($action != 'messaggi' && $action != 'immagini' && $action != 'file') {
-            return 0;
+            return json_encode(['success' => 0]);
         }
 
         $sender_user = User::where('firebase_uid', $sender)->first();
@@ -23,11 +23,11 @@ class PermissionController extends Controller
 
             foreach ($receiver_user->roles as $role) {
                 if ($sender_user->hasPermissionTo('ruolo.' . $role->id . '.' . $action)) {
-                    return 1;
+                    return json_encode(['success' => 1]);
                 }
             }
         }
 
-        return 0;
+        return json_encode(['success' => 0]);
     }
 }
