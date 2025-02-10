@@ -1,5 +1,6 @@
 <div wire:ignore>
     <select class="select2-{{$this->id}} {{$this->class ?? ''}}" @if($this->multiple) multiple="multiple" @endif >
+        <option></option>
         @foreach($this->options as $key => $option)
             @if (is_array($this->model))
                 <option value="{{$key}}" @if(in_array($key, $this->model)) selected @endif>{{$option}}</option>
@@ -23,6 +24,8 @@
         function prepareSelect2(){
             $('.select2-{{$this->id}}').select2({
                 width: '100%',
+                allowClear: true,
+                placeholder: '',
             })
             .off()
             .on('change', function(e) {

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Azienda;
 use App\Traits\AuthorizesRoleOrPermission;
 use Illuminate\Support\Facades\Auth;
 use Rappasoft\LaravelLivewireTables\Views\Column;
@@ -65,6 +66,15 @@ class RuoliTable extends DataTableComponent
             Column::make('Nome', 'name')
                 ->searchable()
                 ->sortable(),
+
+            Column::make('Azienda', 'team_id')
+                ->format(function ($value) {
+                    if ($value) {
+                        if ($azienda = Azienda::find($value)) {
+                            return $azienda->nome;
+                        }
+                    }
+                }),
 
             ComponentColumn::make('Azioni', 'id')
                 ->component('azioni-roles')

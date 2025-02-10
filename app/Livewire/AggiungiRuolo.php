@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Azienda;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
@@ -13,6 +14,9 @@ class AggiungiRuolo extends ModalComponent
 
     public $name;
     public $sel_permission;
+    public $id_azienda;
+
+    public $aziende = [];
 
     public function mount()
     {
@@ -20,12 +24,20 @@ class AggiungiRuolo extends ModalComponent
         foreach (Permission::all() as $permission) {
             $this->permissions[$permission->name] = $permission->name;
         }
+
+        $this->aziende = Azienda::all()->pluck('nome', 'id')->toArray();
     }
 
     #[On('changeSelPermissions')]
     public function changeSelPermissions($data)
     {
         $this->sel_permission = $data['data'];
+    }
+
+    #[On('changeAzienda')]
+    public function changeAzienda($data)
+    {
+        $this->id_azienda = $data['data'];
     }
 
     public function render()
@@ -40,12 +52,18 @@ class AggiungiRuolo extends ModalComponent
         ]);
         $validatedData['guard_name'] = 'web';
 
+        if ($this->id_azienda) {
+            $validatedData['team_id'] = $this->id_azienda;
+        }
+
         $role = Role::create($validatedData);
         $role->syncPermissions($this->sel_permission);
 
-        Permission::create(['name' => 'ruolo.' . $role->id . '.messaggi']);
-        Permission::create(['name' => 'ruolo.' . $role->id . '.immagini']);
-        Permission::create(['name' => 'ruolo.' . $role->id . '.file']);
+        if ($this->id_azienda) {
+            Permission::create(['name' => 'ruolo.' . $role->id . '.messaggi']);
+            Permission::create(['name' => 'ruolo.' . $role->id . '.immagini']);
+            Permission::create(['name' => 'ruolo.' . $role->id . '.file']);
+        }
 
         $this->dispatch('refreshDatatable');
 

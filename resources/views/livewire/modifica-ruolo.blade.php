@@ -17,6 +17,11 @@
                 <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Nome del ruolo') }}</label>
                 <input type="text" class="form-control form-control-md" wire:model.live="name" required>
             </div>
+            <div class="fw-row mb-5">
+                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Azienda') }}</label>
+
+                <livewire:select-2 :options="$this->aziende" name="azienda" :model="$this->id_azienda" onchange="changeAzienda"/>
+            </div>
             <div class="fw-row mb-5" wire:ignore>
                 <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Permessi del ruolo') }}</label>
 

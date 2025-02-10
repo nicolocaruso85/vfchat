@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Azienda;
 use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Permission;
@@ -14,6 +15,9 @@ class ModificaRuolo extends ModalComponent
 
     public $name;
     public $sel_permission;
+    public $id_azienda;
+
+    public $aziende = [];
 
     public $permissions = [];
 
@@ -33,12 +37,20 @@ class ModificaRuolo extends ModalComponent
             ->get()
             ->pluck('name')
             ->toArray();
+
+        $this->aziende = Azienda::all()->pluck('nome', 'id')->toArray();
     }
 
     #[On('changeSelPermissions')]
     public function changeSelPermissions($data)
     {
         $this->sel_permission = $data['data'];
+    }
+
+    #[On('changeAzienda')]
+    public function changeAzienda($data)
+    {
+        $this->id_azienda = $data['data'];
     }
 
     public function render()
