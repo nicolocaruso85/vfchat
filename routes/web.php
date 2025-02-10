@@ -7,6 +7,7 @@ use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\AziendeController;
 use App\Http\Controllers\OrganigrammaController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\StatisticheController;
 use App\Http\Controllers\UserController;
 
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/report-con-classifica', [StatisticheController::class, 'reportConClassifica'])->name('report-con-classifica');
     Route::get('/report-generale', [StatisticheController::class, 'reportGenerale'])->name('report-generale');
 });
+
+Route::get('/check-permission/{sender}/{receiver}/{team}/{action}', [PermissionController::class, 'checkPermission'])->name('check-permission');
 
 // authentication
 Route::get('/login', [LoginBasic::class, 'index'])->name('login');
