@@ -6,6 +6,7 @@ use App\Models\Azienda;
 use App\Models\Gruppo;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Spatie\Permission\Models\Role;
 
 class AggiornaAziendaToFirebase implements ShouldQueue
 {
@@ -22,6 +23,17 @@ class AggiornaAziendaToFirebase implements ShouldQueue
     {
         $azienda = Azienda::find($this->id_azienda);
 
+        $firestore = app('firebase.firestore');
+        $database = $firestore->database();
+
+        $ruoli = [];
+        foreach (Role::where('team_id', $this->id_azienda)->get() as $ruolo) {
+            $ruoli[] = [
+                'id' => $ruolo->id,
+                'nome' => $ruolo->name,
+            ];
+        }
+
         $gruppi = [];
         foreach (Gruppo::where('owner_id', $this->id_azienda)->get() as $gruppo) {
             $gruppi[] = [
@@ -29,9 +41,6 @@ class AggiornaAziendaToFirebase implements ShouldQueue
                 'nome' => $gruppo->name,
             ];
         }
-
-        $firestore = app('firebase.firestore');
-        $database = $firestore->database();
 
         $database->collection('aziende')
             ->document($azienda->firebase_uid)
@@ -41,6 +50,7 @@ class AggiornaAziendaToFirebase implements ShouldQueue
                 'indirizzo' => $azienda->indirizzo,
                 'citta' => $azienda->citta,
                 'cap' => $azienda->cap,
+                'ruoli' => $ruoli,
                 'gruppi' => $gruppi,
             ]);
     }
