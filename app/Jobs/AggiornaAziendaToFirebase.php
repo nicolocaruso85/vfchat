@@ -50,6 +50,7 @@ class AggiornaAziendaToFirebase implements ShouldQueue
                 'indirizzo' => $azienda->indirizzo,
                 'citta' => $azienda->citta,
                 'cap' => $azienda->cap,
+                'codice_azienda' => $azienda->codice_azienda,
                 'ruoli' => $ruoli,
                 'gruppi' => $gruppi,
             ]);

@@ -61,6 +61,14 @@
                                 <span class="h6 me-1">CAP:</span>
                                 <span>{{ $azienda->cap }}</span>
                             </li>
+                            @if ($azienda->codice_azienda)
+                                <li class="mb-2">
+                                    <span class="h6 me-1 align-middle">Codice invito:</span>
+                                    <span class="align-middle" id="codice-invito">{{ $azienda->codice_azienda }}</span>
+
+                                    <i role="button" title="Copia codice" class="bx bx-sm bx-clipboard align-middle ml-1 text-secondary" id="copy-codice-invito"></i>
+                                </li>
+                            @endif
                         </ul>
                         <div class="d-flex justify-content-center">
                             <button class="btn btn-primary w-100" wire:click="$dispatch('openModal', { component: 'modifica-azienda', arguments: {{ json_encode(['azienda_id' => $azienda->id]) }} })">Modifica Azienda</button>
@@ -205,3 +213,22 @@
         </div>
     </div>
 </div>
+
+@script
+    <script>
+        $('#copy-codice-invito').click(function() {
+            var text = document.getElementById('codice-invito').innerHTML;
+
+            navigator.clipboard.writeText(text).then(function(){
+                $('#copy-codice-invito').removeClass('bx-clipboard');
+                $('#copy-codice-invito').addClass('bx-check text-success');
+
+                setTimeout(function() {
+                    $('#copy-codice-invito').removeClass('bx-check text-success');
+                    $('#copy-codice-invito').addClass('bx-clipboard');
+                }, 1000);
+            });
+        });
+    </script>
+@endscript
+

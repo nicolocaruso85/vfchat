@@ -29,6 +29,8 @@ class AggiungiAzienda extends ModalComponent
             'cap' => '',
         ]);
 
+        $validatedData['codice_azienda'] = strtoupper(str()->random(8));
+
         $azienda = Azienda::create($validatedData);
 
         $this->dispatch('refreshDatatable');
