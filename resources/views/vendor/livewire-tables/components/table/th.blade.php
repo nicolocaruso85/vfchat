@@ -35,8 +35,8 @@
                 <button wire:click="sortBy('{{ $column->getColumnSortKey() }}')"
                     {{
                         $attributes->merge($customSortButtonAttributes)
-                            ->class(['text-gray-500 dark:text-gray-400' => (($customSortButtonAttributes['default-colors'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
-                            ->class(['flex items-center space-x-1 text-left text-xs leading-4 font-medium uppercase tracking-wider group focus:outline-none' => (($customSortButtonAttributes['default-styling'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
+                            ->class(['fw-bold text-gray-600' => (($customSortButtonAttributes['default-colors'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
+                            ->class(['flex items-center space-x-1 text-left leading-4 font-medium uppercase tracking-wider group focus:outline-none' => (($customSortButtonAttributes['default-styling'] ?? true) || ($customSortButtonAttributes['default'] ?? true))])
                             ->except(['default', 'default-colors', 'default-styling', 'wire:key'])
                     }}
                 >

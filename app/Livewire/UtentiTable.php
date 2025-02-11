@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 class UtentiTable extends DataTableComponent
@@ -84,6 +85,9 @@ class UtentiTable extends DataTableComponent
                 ->label(function($row, Column $column) {
                     return implode(', ', $row->teams()->pluck('name')->toArray());
                 }),
+
+            BooleanColumn::make('Attivo', 'active')
+                ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
                 ->component('azioni-utenti')
