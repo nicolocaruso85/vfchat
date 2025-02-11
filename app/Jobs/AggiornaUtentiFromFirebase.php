@@ -40,12 +40,18 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
                         'name' => $data['name'],
                     ]);
                 }
+                if (isset($data['isApproved'])) {
+                    $user->update([
+                        'active' => true,
+                    ]);
+                }
             }
             else if (isset($data['name']) && isset($data['email'])) {
                 User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => 'fake-password',
+                    'active' => (isset($data['isApproved']) && $data['isApproved']) ? true : false,
                 ]);
             }
 
