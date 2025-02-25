@@ -24,6 +24,12 @@ class Azienda extends Component
     }
 
     #[Computed]
+    public function amministratori()
+    {
+        return $this->azienda->amministratori()->pluck('name')->toArray();
+    }
+
+    #[Computed]
     public function puntivendita()
     {
         return $this->azienda->negozi->count();

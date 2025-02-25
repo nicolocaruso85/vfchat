@@ -61,6 +61,16 @@
                                 <span class="h6 me-1">CAP:</span>
                                 <span>{{ $azienda->cap }}</span>
                             </li>
+                            <li class="mb-2">
+                                <span class="h6 me-1">Amministratori:</span>
+                                <span>
+                                    @foreach ($this->amministratori as $amministratore)
+                                        <span class="badge bg-label-info">
+                                            {{ $amministratore }}
+                                        </span>
+                                    @endforeach
+                                </span>
+                            </li>
                             @if ($azienda->codice_azienda)
                                 <li class="mb-2">
                                     <span class="h6 me-1 align-middle">Codice invito:</span>
