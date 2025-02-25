@@ -37,6 +37,10 @@
                     </div>
                 </div>
             </div>
+            <div class="fw-row mb-5">
+                <label class="form-label fs-6 fw-bolder text-dark required">{{ __('Amministratori') }}</label>
+                <livewire:select-2 :options="$this->dipendenti" name="amministratori" :model="$this->amministratori" onchange="changeAmministratori" multiple/>
+            </div>
         </form>
     </div>
 

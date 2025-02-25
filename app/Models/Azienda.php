@@ -27,6 +27,12 @@ class Azienda extends Model
         return $this->belongsToMany(User::class, 'dipendenti_aziendas', 'id_azienda', 'id_dipendente')->using(DipendentiAzienda::class)->withPivot('id');
     }
 
+    public function amministratori()
+    {
+        return $this->belongsToMany(User::class, 'dipendenti_aziendas', 'id_azienda', 'id_dipendente')->using(DipendentiAzienda::class)->withPivot('id')
+            ->where('admin', true);
+    }
+
     public function negozi()
     {
         return $this->hasMany(Negozio::class, 'id_azienda', 'id');

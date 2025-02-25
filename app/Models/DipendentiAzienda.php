@@ -17,6 +17,7 @@ class DipendentiAzienda extends Pivot
     protected $fillable = [
         'id_dipendente',
         'id_azienda',
+        'admin',
     ];
 
     public $timestamps = false;

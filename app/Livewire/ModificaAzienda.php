@@ -3,7 +3,10 @@
 namespace App\Livewire;
 
 use App\Jobs\AggiornaAziendaToFirebase;
+use App\Jobs\AggiornaUtenteToFirebase;
 use App\Models\Azienda;
+use App\Models\DipendentiAzienda;
+use Livewire\Attributes\On;
 use LivewireUI\Modal\ModalComponent;
 
 class ModificaAzienda extends ModalComponent
@@ -17,6 +20,9 @@ class ModificaAzienda extends ModalComponent
     public $citta;
     public $cap;
 
+    public $dipendenti = [];
+    public $amministratori = [];
+
     public function mount()
     {
         $this->azienda = Azienda::find($this->azienda_id);
@@ -26,6 +32,10 @@ class ModificaAzienda extends ModalComponent
         $this->indirizzo = $this->azienda->indirizzo;
         $this->citta = $this->azienda->citta;
         $this->cap = $this->azienda->cap;
+
+        $this->dipendenti = $this->azienda->dipendenti->pluck('name', 'id')->toArray();
+
+        $this->amministratori = $this->azienda->amministratori->pluck('id')->toArray();
     }
 
     public function render()
@@ -49,7 +59,35 @@ class ModificaAzienda extends ModalComponent
 
         AggiornaAziendaToFirebase::dispatch($this->azienda->id);
 
+        $amministratori = $this->azienda->amministratori->pluck('id')->toArray();
+
+        foreach (array_diff($amministratori, $this->amministratori) as $id_dipendente) {
+            DipendentiAzienda::where('id_azienda', $this->azienda->id)
+                ->where('id_dipendente', $id_dipendente)
+                ->update([
+                    'admin' => false,
+                ]);
+
+            AggiornaUtenteToFirebase::dispatch($id_dipendente, false);
+        }
+
+        foreach ($this->amministratori as $id_dipendente) {
+            DipendentiAzienda::where('id_azienda', $this->azienda->id)
+                ->where('id_dipendente', $id_dipendente)
+                ->update([
+                    'admin' => true,
+                ]);
+
+            AggiornaUtenteToFirebase::dispatch($id_dipendente, true);
+        }
+
         $this->closeModal();
+    }
+
+    #[On('changeAmministratori')]
+    public function changeAmministratori($data)
+    {
+        $this->amministratori = $data['data'];
     }
 
     public function cancel()
