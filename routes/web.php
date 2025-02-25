@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/check-permission/{sender}/{receiver}/{team}/{action}', [PermissionController::class, 'checkPermission'])->name('check-permission');
+Route::post('/check-permission/{sender}/{team}/{action}', [PermissionController::class, 'checkPermissionPost'])->name('check-permission-post');
 
 // authentication
 Route::get('/login', [LoginBasic::class, 'index'])->name('login');

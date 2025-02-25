@@ -10,15 +10,35 @@ class PermissionController extends Controller
 {
     public function checkPermission($sender, $receiver, $team, $action)
     {
-        if ($action != 'messaggi' && $action != 'immagini' && $action != 'file' && $action != 'gruppo') {
+        if ($action != 'messaggi' && $action != 'immagini' && $action != 'file') {
             return json_encode(['success' => 0]);
         }
 
         $azienda = Azienda::where('firebase_uid', $team)->first();
+        $sender_user = User::where('firebase_uid', $sender)->first();
+        $receiver_user = User::where('firebase_uid', $receiver)->first();
 
+        if ($sender_user && $receiver_user && $azienda) {
+            setPermissionsTeamId($azienda->id);
+
+            foreach ($receiver_user->roles as $role) {
+                if ($sender_user->hasPermissionTo('ruolo.' . $role->id . '.' . $action)) {
+                    return json_encode(['success' => 1]);
+                }
+            }
+        }
+
+        return json_encode(['success' => 0]);
+    }
+
+    public function checkPermissionPost($sender, $team, $action)
+    {
         if ($action == 'gruppo') {
+            $receiver = $_POST['user_ids'];
+
+            $azienda = Azienda::where('firebase_uid', $team)->first();
             $sender_user = User::where('firebase_uid', $sender)->first();
-            $receiver_users = User::whereIn('firebase_uid', explode(',', $receiver))->get();
+            $receiver_users = User::whereIn('firebase_uid', $receiver)->get();
 
             if ($sender_user && !empty($receiver_users) && $azienda) {
                 setPermissionsTeamId($azienda->id);
@@ -34,20 +54,6 @@ class PermissionController extends Controller
                 }
 
                 return json_encode(['success' => 1, 'user_ids' => $user_ids]);
-            }
-        }
-        else {
-            $sender_user = User::where('firebase_uid', $sender)->first();
-            $receiver_user = User::where('firebase_uid', $receiver)->first();
-
-            if ($sender_user && $receiver_user && $azienda) {
-                setPermissionsTeamId($azienda->id);
-
-                foreach ($receiver_user->roles as $role) {
-                    if ($sender_user->hasPermissionTo('ruolo.' . $role->id . '.' . $action)) {
-                        return json_encode(['success' => 1]);
-                    }
-                }
             }
         }
 

@@ -11,7 +11,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
     health: '/up',
   )
   ->withMiddleware(function (Middleware $middleware) {
-    //
+    $middleware->validateCsrfTokens(except: [
+      'check-permission/*/*/*',
+    ]);
   })
   ->withExceptions(function (Exceptions $exceptions) {
     //
