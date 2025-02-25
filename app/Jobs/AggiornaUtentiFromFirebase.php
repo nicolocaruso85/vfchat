@@ -2,9 +2,13 @@
 
 namespace App\Jobs;
 
+use App\Mail\NuovoUtenteDaApprovare;
+use App\Models\Azienda;
+use App\Models\DipendentiAzienda;
 use App\Models\User;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Mail;
 
 class AggiornaUtentiFromFirebase implements ShouldQueue
 {
@@ -47,12 +51,29 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
                 }
             }
             else if (isset($data['name']) && isset($data['email'])) {
-                User::create([
+                $user = User::create([
                     'name' => $data['name'],
                     'email' => $data['email'],
                     'password' => 'fake-password',
                     'active' => (isset($data['isApproved']) && $data['isApproved']) ? true : false,
                 ]);
+
+                if (!empty($data['codiceAzienda'])) {
+                    $azienda = Azienda::where('codice_azienda', $data['codiceAzienda'])->first();
+                    if ($azienda) {
+                        DipendentiAzienda::create([
+                            'id_dipendente' => $user->id,
+                            'id_azienda' => $azienda->id,
+                        ]);
+
+                        if (!$user->active) {
+                            foreach ($azienda->amministratori as $amministratore) {
+                                Mail::to($amministratore->email)
+                                    ->queue(new NuovoUtenteDaApprovare($user));
+                            }
+                        }
+                    }
+                }
             }
 
             $database->collection('users-updates')
