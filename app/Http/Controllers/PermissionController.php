@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Azienda;
 use App\Models\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
@@ -31,10 +32,10 @@ class PermissionController extends Controller
         return json_encode(['success' => 0]);
     }
 
-    public function checkPermissionPost($sender, $team, $action)
+    public function checkPermissionPost($sender, $team, $action, Request $request)
     {
         if ($action == 'gruppo') {
-            $receiver = $_POST['user_ids'];
+            $receiver = $request->user_ids;
 
             $azienda = Azienda::where('firebase_uid', $team)->first();
             $sender_user = User::where('firebase_uid', $sender)->first();
