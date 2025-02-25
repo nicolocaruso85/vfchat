@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2659b3c3b0427a8446735bd118f51814",
+    "content-hash": "00576e89e0b6f2ceae10f9f8d31ee40f",
     "packages": [
         {
             "name": "beste/clock",
@@ -2109,20 +2109,20 @@
         },
         {
             "name": "jackbayliss/livewire-select2",
-            "version": "1.1.3",
+            "version": "dev-l12-compatibility",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jackbayliss/livewire-select2.git",
-                "reference": "9cdd02f5d5cf0f6f456771d3c61bba38758d95b7"
+                "url": "https://github.com/nicolocaruso85/livewire-select2.git",
+                "reference": "74fdb71cf9f849362dd1f6a3c7c10ab7bdc63348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jackbayliss/livewire-select2/zipball/9cdd02f5d5cf0f6f456771d3c61bba38758d95b7",
-                "reference": "9cdd02f5d5cf0f6f456771d3c61bba38758d95b7",
+                "url": "https://api.github.com/repos/nicolocaruso85/livewire-select2/zipball/74fdb71cf9f849362dd1f6a3c7c10ab7bdc63348",
+                "reference": "74fdb71cf9f849362dd1f6a3c7c10ab7bdc63348",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^10.0||^11.0",
+                "illuminate/contracts": "^10.0||^11.0||^12.0",
                 "php": "^8.2",
                 "spatie/laravel-package-tools": "^1.16"
             },
@@ -2143,12 +2143,12 @@
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "LivewireSelect2": "JackBayliss\\LivewireSelect2\\Facades\\LivewireSelect2"
-                    },
                     "providers": [
                         "JackBayliss\\LivewireSelect2\\LivewireSelect2ServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "LivewireSelect2": "JackBayliss\\LivewireSelect2\\Facades\\LivewireSelect2"
+                    }
                 }
             },
             "autoload": {
@@ -2157,7 +2157,44 @@
                     "JackBayliss\\LivewireSelect2\\Database\\Factories\\": "database/factories/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "JackBayliss\\LivewireSelect2\\Tests\\": "tests/",
+                    "Workbench\\App\\": "workbench/app/"
+                }
+            },
+            "scripts": {
+                "post-autoload-dump": [
+                    "@composer run prepare"
+                ],
+                "clear": [
+                    "@php vendor/bin/testbench package:purge-livewire-select2 --ansi"
+                ],
+                "prepare": [
+                    "@php vendor/bin/testbench package:discover --ansi"
+                ],
+                "build": [
+                    "@composer run prepare",
+                    "@php vendor/bin/testbench workbench:build --ansi"
+                ],
+                "start": [
+                    "Composer\\Config::disableProcessTimeout",
+                    "@composer run build",
+                    "@php vendor/bin/testbench serve"
+                ],
+                "analyse": [
+                    "vendor/bin/phpstan analyse"
+                ],
+                "test": [
+                    "vendor/bin/pest"
+                ],
+                "test-coverage": [
+                    "vendor/bin/pest --coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -2176,16 +2213,15 @@
                 "livewire-select2"
             ],
             "support": {
-                "issues": "https://github.com/jackbayliss/livewire-select2/issues",
-                "source": "https://github.com/jackbayliss/livewire-select2/tree/1.1.3"
+                "source": "https://github.com/nicolocaruso85/livewire-select2/tree/l12-compatibility"
             },
             "funding": [
                 {
-                    "url": "https://github.com/JackBayliss",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/JackBayliss"
                 }
             ],
-            "time": "2024-09-17T23:51:09+00:00"
+            "time": "2025-02-25T22:21:28+00:00"
         },
         {
             "name": "kreait/firebase-php",
@@ -2362,29 +2398,30 @@
         },
         {
             "name": "kreait/laravel-firebase",
-            "version": "5.10.0",
+            "version": "6.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/kreait/laravel-firebase.git",
-                "reference": "d00093fdc6ef006a489ea0fe59f1a2feb5045057"
+                "reference": "d6eb3cae911e67140fb7ede30397efc19c2e438c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kreait/laravel-firebase/zipball/d00093fdc6ef006a489ea0fe59f1a2feb5045057",
-                "reference": "d00093fdc6ef006a489ea0fe59f1a2feb5045057",
+                "url": "https://api.github.com/repos/kreait/laravel-firebase/zipball/d6eb3cae911e67140fb7ede30397efc19c2e438c",
+                "reference": "d6eb3cae911e67140fb7ede30397efc19c2e438c",
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "^9.0 || ^10.0 || ^11.0",
-                "illuminate/support": "^9.0 || ^10.0 || ^11.0",
+                "illuminate/contracts": "^11.0 || ^12.0",
+                "illuminate/notifications": "^11.0 || ^12.0",
+                "illuminate/support": "^11.0 || ^12.0",
                 "kreait/firebase-php": "^7.13",
-                "php": "~8.1.0 || ~8.2.0 || ~8.3.0 || ~8.4.0",
+                "php": "~8.2.0 || ~8.3.0 || ~8.4.0",
                 "symfony/cache": "^6.1.2 || ^7.0.3"
             },
             "require-dev": {
                 "laravel/pint": "^1.14",
-                "orchestra/testbench": "^7.0 || ^8.0 || ^9.0",
-                "phpunit/phpunit": "^9.6.17 || ^10.5.13"
+                "orchestra/testbench": "^9.0 || ^10.0",
+                "phpunit/phpunit": "^11.4.3"
             },
             "type": "library",
             "extra": {
@@ -2424,7 +2461,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kreait/laravel-firebase/issues",
-                "source": "https://github.com/kreait/laravel-firebase/tree/5.10.0"
+                "source": "https://github.com/kreait/laravel-firebase/tree/6.0.0"
             },
             "funding": [
                 {
@@ -2436,24 +2473,79 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-11-22T13:02:38+00:00"
+            "time": "2025-02-24T22:11:09+00:00"
         },
         {
-            "name": "laravel/framework",
-            "version": "v11.44.0",
+            "name": "label84/laravel-auth-log",
+            "version": "v1.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "e9a33da34815ac1ed46c7e4c477a775f4592f0a7"
+                "url": "https://github.com/Label84/laravel-auth-log.git",
+                "reference": "425a322a563e9801bbfcdb4845d85657d2972b1e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/e9a33da34815ac1ed46c7e4c477a775f4592f0a7",
-                "reference": "e9a33da34815ac1ed46c7e4c477a775f4592f0a7",
+                "url": "https://api.github.com/repos/Label84/laravel-auth-log/zipball/425a322a563e9801bbfcdb4845d85657d2972b1e",
+                "reference": "425a322a563e9801bbfcdb4845d85657d2972b1e",
                 "shasum": ""
             },
             "require": {
-                "brick/math": "^0.9.3|^0.10.2|^0.11|^0.12",
+                "illuminate/auth": "^11.0|^12.0",
+                "illuminate/database": "^11.0|^12.0",
+                "illuminate/support": "^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "larastan/larastan": "^2.0|^3.1",
+                "laravel/pint": "^1.21",
+                "orchestra/testbench": "^9.0|^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Label84\\AuthLog\\AuthLogServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Label84\\AuthLog\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Label84",
+                    "email": "info@label84.com"
+                }
+            ],
+            "description": "Log user authentication actions in Laravel.",
+            "support": {
+                "issues": "https://github.com/Label84/laravel-auth-log/issues",
+                "source": "https://github.com/Label84/laravel-auth-log/tree/v1.4.0"
+            },
+            "time": "2025-02-24T20:23:51+00:00"
+        },
+        {
+            "name": "laravel/framework",
+            "version": "v12.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/framework.git",
+                "reference": "d99e2385a6d4324782d52f4423891966425641be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d99e2385a6d4324782d52f4423891966425641be",
+                "reference": "d99e2385a6d4324782d52f4423891966425641be",
+                "shasum": ""
+            },
+            "require": {
+                "brick/math": "^0.11|^0.12",
                 "composer-runtime-api": "^2.2",
                 "doctrine/inflector": "^2.0.5",
                 "dragonmantank/cron-expression": "^3.4",
@@ -2468,32 +2560,32 @@
                 "fruitcake/php-cors": "^1.3",
                 "guzzlehttp/guzzle": "^7.8.2",
                 "guzzlehttp/uri-template": "^1.0",
-                "laravel/prompts": "^0.1.18|^0.2.0|^0.3.0",
+                "laravel/prompts": "^0.3.0",
                 "laravel/serializable-closure": "^1.3|^2.0",
                 "league/commonmark": "^2.6",
                 "league/flysystem": "^3.25.1",
                 "league/flysystem-local": "^3.25.1",
                 "league/uri": "^7.5.1",
                 "monolog/monolog": "^3.0",
-                "nesbot/carbon": "^2.72.6|^3.8.4",
+                "nesbot/carbon": "^3.8.4",
                 "nunomaduro/termwind": "^2.0",
                 "php": "^8.2",
                 "psr/container": "^1.1.1|^2.0.1",
                 "psr/log": "^1.0|^2.0|^3.0",
                 "psr/simple-cache": "^1.0|^2.0|^3.0",
                 "ramsey/uuid": "^4.7",
-                "symfony/console": "^7.0.3",
-                "symfony/error-handler": "^7.0.3",
-                "symfony/finder": "^7.0.3",
+                "symfony/console": "^7.2.0",
+                "symfony/error-handler": "^7.2.0",
+                "symfony/finder": "^7.2.0",
                 "symfony/http-foundation": "^7.2.0",
-                "symfony/http-kernel": "^7.0.3",
-                "symfony/mailer": "^7.0.3",
-                "symfony/mime": "^7.0.3",
+                "symfony/http-kernel": "^7.2.0",
+                "symfony/mailer": "^7.2.0",
+                "symfony/mime": "^7.2.0",
                 "symfony/polyfill-php83": "^1.31",
-                "symfony/process": "^7.0.3",
-                "symfony/routing": "^7.0.3",
-                "symfony/uid": "^7.0.3",
-                "symfony/var-dumper": "^7.0.3",
+                "symfony/process": "^7.2.0",
+                "symfony/routing": "^7.2.0",
+                "symfony/uid": "^7.2.0",
+                "symfony/var-dumper": "^7.2.0",
                 "tijsverkoyen/css-to-inline-styles": "^2.2.5",
                 "vlucas/phpdotenv": "^5.6.1",
                 "voku/portable-ascii": "^2.0.2"
@@ -2557,17 +2649,17 @@
                 "league/flysystem-read-only": "^3.25.1",
                 "league/flysystem-sftp-v3": "^3.25.1",
                 "mockery/mockery": "^1.6.10",
-                "orchestra/testbench-core": "^9.9.4",
+                "orchestra/testbench-core": "^10.0",
                 "pda/pheanstalk": "^5.0.6",
                 "php-http/discovery": "^1.15",
                 "phpstan/phpstan": "^2.0",
-                "phpunit/phpunit": "^10.5.35|^11.3.6|^12.0.1",
+                "phpunit/phpunit": "^10.5.35|^11.5.3|^12.0.1",
                 "predis/predis": "^2.3",
                 "resend/resend-php": "^0.10.0",
-                "symfony/cache": "^7.0.3",
-                "symfony/http-client": "^7.0.3",
-                "symfony/psr-http-message-bridge": "^7.0.3",
-                "symfony/translation": "^7.0.3"
+                "symfony/cache": "^7.2.0",
+                "symfony/http-client": "^7.2.0",
+                "symfony/psr-http-message-bridge": "^7.2.0",
+                "symfony/translation": "^7.2.0"
             },
             "suggest": {
                 "ably/ably-php": "Required to use the Ably broadcast driver (^1.0).",
@@ -2593,22 +2685,22 @@
                 "mockery/mockery": "Required to use mocking (^1.6).",
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^5.0).",
                 "php-http/discovery": "Required to use PSR-7 bridging features (^1.15).",
-                "phpunit/phpunit": "Required to use assertions and run tests (^10.5.35|^11.3.6|^12.0.1).",
+                "phpunit/phpunit": "Required to use assertions and run tests (^10.5.35|^11.5.3|^12.0.1).",
                 "predis/predis": "Required to use the predis connector (^2.3).",
                 "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^6.0|^7.0).",
                 "resend/resend-php": "Required to enable support for the Resend mail transport (^0.10.0).",
-                "symfony/cache": "Required to PSR-6 cache bridge (^7.0).",
-                "symfony/filesystem": "Required to enable support for relative symbolic links (^7.0).",
-                "symfony/http-client": "Required to enable support for the Symfony API mail transports (^7.0).",
-                "symfony/mailgun-mailer": "Required to enable support for the Mailgun mail transport (^7.0).",
-                "symfony/postmark-mailer": "Required to enable support for the Postmark mail transport (^7.0).",
-                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^7.0)."
+                "symfony/cache": "Required to PSR-6 cache bridge (^7.2).",
+                "symfony/filesystem": "Required to enable support for relative symbolic links (^7.2).",
+                "symfony/http-client": "Required to enable support for the Symfony API mail transports (^7.2).",
+                "symfony/mailgun-mailer": "Required to enable support for the Mailgun mail transport (^7.2).",
+                "symfony/postmark-mailer": "Required to enable support for the Postmark mail transport (^7.2).",
+                "symfony/psr-http-message-bridge": "Required to use PSR-7 bridging features (^7.2)."
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "11.x-dev"
+                    "dev-master": "12.x-dev"
                 }
             },
             "autoload": {
@@ -2651,7 +2743,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2025-02-24T13:08:54+00:00"
+            "time": "2025-02-24T13:31:23+00:00"
         },
         {
             "name": "laravel/prompts",
@@ -3707,37 +3799,37 @@
         },
         {
             "name": "mpociot/teamwork",
-            "version": "9.0.0",
+            "version": "dev-l12-compatibility",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mpociot/teamwork.git",
-                "reference": "bda53ab045f08fe5adc6ae422f077d67d1fbf321"
+                "url": "https://github.com/laravel-shift/teamwork.git",
+                "reference": "fbe10acfd8411237bfb09a694d075139d514f673"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpociot/teamwork/zipball/bda53ab045f08fe5adc6ae422f077d67d1fbf321",
-                "reference": "bda53ab045f08fe5adc6ae422f077d67d1fbf321",
+                "url": "https://api.github.com/repos/laravel-shift/teamwork/zipball/fbe10acfd8411237bfb09a694d075139d514f673",
+                "reference": "fbe10acfd8411237bfb09a694d075139d514f673",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^9.0|^10.0|^11.0",
+                "laravel/framework": "^9.0|^10.0|^11.0|^12.0",
                 "php": "^8.0"
             },
             "require-dev": {
-                "doctrine/dbal": "^2.10|^3.5",
-                "illuminate/database": "^9.0|^10.0|^11.0",
+                "doctrine/dbal": "^2.10|^3.5|^4.2",
+                "illuminate/database": "^9.0|^10.0|^11.0|^12.0",
                 "mockery/mockery": "^1.5.1",
-                "orchestra/testbench": "^7.0|^8.0|^9.0"
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0"
             },
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "Teamwork": "Mpociot\\Teamwork\\Facades\\Teamwork"
-                    },
                     "providers": [
                         "Mpociot\\Teamwork\\TeamworkServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "Teamwork": "Mpociot\\Teamwork\\Facades\\Teamwork"
+                    }
                 }
             },
             "autoload": {
@@ -3745,7 +3837,11 @@
                     "Mpociot\\Teamwork\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Mpociot\\Teamwork\\Tests\\": "tests"
+                }
+            },
             "license": [
                 "MIT"
             ],
@@ -3769,7 +3865,7 @@
                 "issues": "https://github.com/mpociot/teamwork/issues",
                 "source": "https://github.com/mpociot/teamwork"
             },
-            "time": "2024-06-18T11:45:47+00:00"
+            "time": "2025-02-17T00:03:52+00:00"
         },
         {
             "name": "mtdowling/jmespath.php",
@@ -5078,33 +5174,33 @@
         },
         {
             "name": "rappasoft/laravel-livewire-tables",
-            "version": "v3.6.0",
+            "version": "dev-laravel12-support",
             "source": {
                 "type": "git",
-                "url": "https://github.com/rappasoft/laravel-livewire-tables.git",
-                "reference": "28cc21ad579a9aa2ffad824c6c25a9ecfbb52f2a"
+                "url": "https://github.com/svenbw/laravel-livewire-tables.git",
+                "reference": "18c3dbf3ba65850f46f2a6fde617d854be611dc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rappasoft/laravel-livewire-tables/zipball/28cc21ad579a9aa2ffad824c6c25a9ecfbb52f2a",
-                "reference": "28cc21ad579a9aa2ffad824c6c25a9ecfbb52f2a",
+                "url": "https://api.github.com/repos/svenbw/laravel-livewire-tables/zipball/18c3dbf3ba65850f46f2a6fde617d854be611dc4",
+                "reference": "18c3dbf3ba65850f46f2a6fde617d854be611dc4",
                 "shasum": ""
             },
             "require": {
                 "blade-ui-kit/blade-heroicons": "^2.1",
-                "illuminate/contracts": "^10.0|^11.0",
-                "illuminate/support": "^10.0|^11.0",
+                "illuminate/contracts": "^10.0|^11.0|^12.0",
+                "illuminate/support": "^10.0|^11.0|^12.0",
                 "livewire/livewire": "^3.0|dev-main",
                 "php": "^8.1|^8.2|^8.3"
             },
             "require-dev": {
                 "brianium/paratest": "^5.0|^6.0|^7.0|^8.0",
                 "ext-sqlite3": "*",
-                "larastan/larastan": "^2.6",
+                "larastan/larastan": "^2.6|^3.0",
                 "laravel/pint": "^1.10",
                 "monolog/monolog": "*",
                 "nunomaduro/collision": "^6.0|^7.0|^8.0",
-                "orchestra/testbench": "^7.0|^8.0|^9.0",
+                "orchestra/testbench": "^7.0|^8.0|^9.0|^10.0",
                 "phpunit/phpunit": "^9.0|^10.0|^11.0"
             },
             "type": "library",
@@ -5120,7 +5216,25 @@
                     "Rappasoft\\LaravelLivewireTables\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Rappasoft\\LaravelLivewireTables\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "psalm": [
+                    "vendor/bin/psalm"
+                ],
+                "test": [
+                    "vendor/bin/phpunit --colors=always"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ],
+                "format": [
+                    "vendor/bin/pint"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -5146,16 +5260,15 @@
                 "tables"
             ],
             "support": {
-                "issues": "https://github.com/rappasoft/laravel-livewire-tables/issues",
-                "source": "https://github.com/rappasoft/laravel-livewire-tables/tree/v3.6.0"
+                "source": "https://github.com/svenbw/laravel-livewire-tables/tree/laravel12-support"
             },
             "funding": [
                 {
-                    "url": "https://github.com/rappasoft",
-                    "type": "github"
+                    "type": "github",
+                    "url": "https://github.com/rappasoft"
                 }
             ],
-            "time": "2025-01-16T23:45:11+00:00"
+            "time": "2025-02-25T20:48:15+00:00"
         },
         {
             "name": "rize/uri-template",
@@ -5531,27 +5644,27 @@
         },
         {
             "name": "spatie/laravel-searchable",
-            "version": "1.12.0",
+            "version": "1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-searchable.git",
-                "reference": "02f53b35c537ebbd5c2cb15a0f683fa317248f4f"
+                "reference": "7821e4c72277133cf541ea181724af64b2b972c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/02f53b35c537ebbd5c2cb15a0f683fa317248f4f",
-                "reference": "02f53b35c537ebbd5c2cb15a0f683fa317248f4f",
+                "url": "https://api.github.com/repos/spatie/laravel-searchable/zipball/7821e4c72277133cf541ea181724af64b2b972c5",
+                "reference": "7821e4c72277133cf541ea181724af64b2b972c5",
                 "shasum": ""
             },
             "require": {
                 "ext-pdo": "*",
-                "laravel/framework": "^8.78|^9.0|^10.0|^11.0",
+                "laravel/framework": "^8.78|^9.0|^10.0|^11.0|^12.0",
                 "php": "^7.3|^8.0"
             },
             "require-dev": {
                 "larapack/dd": "^1.0",
-                "orchestra/testbench": "^6.27|^7.0|^8.0",
-                "phpunit/phpunit": "^9.3|^10.0"
+                "orchestra/testbench": "^6.27|^7.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.3|^10.0|^11.0"
             },
             "type": "library",
             "autoload": {
@@ -5585,7 +5698,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-searchable/issues",
-                "source": "https://github.com/spatie/laravel-searchable/tree/1.12.0"
+                "source": "https://github.com/spatie/laravel-searchable/tree/1.13.0"
             },
             "funding": [
                 {
@@ -5593,7 +5706,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2024-03-13T23:19:24+00:00"
+            "time": "2025-02-25T15:59:46+00:00"
         },
         {
             "name": "symfony/cache",
@@ -8130,36 +8243,36 @@
         },
         {
             "name": "victorybiz/laravel-simple-select",
-            "version": "v1.7.0",
+            "version": "dev-l12-compatibility",
             "source": {
                 "type": "git",
-                "url": "https://github.com/victorybiz/laravel-simple-select.git",
-                "reference": "64db0ebe7e2d00b33e48eebae2ab9b8c4615028f"
+                "url": "https://github.com/laravel-shift/laravel-simple-select.git",
+                "reference": "1e21a6faabf143003977dea03647d99731a63ef4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/victorybiz/laravel-simple-select/zipball/64db0ebe7e2d00b33e48eebae2ab9b8c4615028f",
-                "reference": "64db0ebe7e2d00b33e48eebae2ab9b8c4615028f",
+                "url": "https://api.github.com/repos/laravel-shift/laravel-simple-select/zipball/1e21a6faabf143003977dea03647d99731a63ef4",
+                "reference": "1e21a6faabf143003977dea03647d99731a63ef4",
                 "shasum": ""
             },
             "require": {
-                "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+                "illuminate/support": "^8.0|^9.0|^10.0|^11.0|^12.0",
                 "livewire/livewire": "^2.4|^3.0",
                 "php": "^7.4|^8.0"
             },
             "require-dev": {
-                "orchestra/testbench": "^6.0|^8.0|^9.0",
-                "phpunit/phpunit": "^9.0|^10.5"
+                "orchestra/testbench": "^6.0|^8.0|^9.0|^10.0",
+                "phpunit/phpunit": "^9.0|^10.5|^11.5.3"
             },
             "type": "library",
             "extra": {
                 "laravel": {
-                    "aliases": {
-                        "SimpleSelect": "Victorybiz\\SimpleSelect\\SimpleSelectFacade"
-                    },
                     "providers": [
                         "Victorybiz\\SimpleSelect\\SimpleSelectServiceProvider"
-                    ]
+                    ],
+                    "aliases": {
+                        "SimpleSelect": "Victorybiz\\SimpleSelect\\SimpleSelectFacade"
+                    }
                 }
             },
             "autoload": {
@@ -8167,7 +8280,19 @@
                     "Victorybiz\\SimpleSelect\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Victorybiz\\SimpleSelect\\Tests\\": "tests"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ],
+                "test-coverage": [
+                    "vendor/bin/phpunit --coverage-html coverage"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -8196,10 +8321,9 @@
                 "victorybiz"
             ],
             "support": {
-                "issues": "https://github.com/victorybiz/laravel-simple-select/issues",
-                "source": "https://github.com/victorybiz/laravel-simple-select/tree/v1.7.0"
+                "source": "https://github.com/laravel-shift/laravel-simple-select/tree/l12-compatibility"
             },
-            "time": "2024-04-01T18:55:13+00:00"
+            "time": "2025-02-16T20:56:02+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -8480,78 +8604,6 @@
                 }
             ],
             "time": "2025-02-20T13:07:12+00:00"
-        },
-        {
-            "name": "yadahan/laravel-authentication-log",
-            "version": "v1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/yadahan/laravel-authentication-log.git",
-                "reference": "b19850ccda665c5da8d9323ce9c8e435beee3291"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/yadahan/laravel-authentication-log/zipball/b19850ccda665c5da8d9323ce9c8e435beee3291",
-                "reference": "b19850ccda665c5da8d9323ce9c8e435beee3291",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/auth": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/bus": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/console": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/contracts": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/database": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/http": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/notifications": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "illuminate/support": "^7.30.4|^8.40.0|^9.0|^10.0|^11.0",
-                "php": "^7.2.5|^8.0"
-            },
-            "require-dev": {
-                "orchestra/testbench": "^5.0|^6.0|^7.0|^8.0",
-                "phpunit/phpunit": "^8.4|^9.3.3|^10.0"
-            },
-            "suggest": {
-                "guzzlehttp/guzzle": "Required to use the Slack transport (~6.0)",
-                "nexmo/client": "Required to use the Nexmo transport (~1.0)."
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Yadahan\\AuthenticationLog\\AuthenticationLogServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-master": "1.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Yadahan\\AuthenticationLog\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Yaakov Dahan",
-                    "email": "yakidehan@gmail.com"
-                }
-            ],
-            "description": "Laravel Authentication Log provides authentication logger and notification for Laravel.",
-            "keywords": [
-                "Authentication",
-                "laravel",
-                "log",
-                "notification"
-            ],
-            "support": {
-                "issues": "https://github.com/yadahan/laravel-authentication-log/issues",
-                "source": "https://github.com/yadahan/laravel-authentication-log/tree/v1.7.0"
-            },
-            "time": "2024-03-13T12:19:32+00:00"
         }
     ],
     "packages-dev": [
@@ -8617,77 +8669,6 @@
                 "source": "https://github.com/FakerPHP/Faker/tree/v1.24.1"
             },
             "time": "2024-11-21T13:46:39+00:00"
-        },
-        {
-            "name": "filp/whoops",
-            "version": "2.17.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/filp/whoops.git",
-                "reference": "075bc0c26631110584175de6523ab3f1652eb28e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/filp/whoops/zipball/075bc0c26631110584175de6523ab3f1652eb28e",
-                "reference": "075bc0c26631110584175de6523ab3f1652eb28e",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0",
-                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3",
-                "symfony/var-dumper": "^4.0 || ^5.0"
-            },
-            "suggest": {
-                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
-                "whoops/soap": "Formats errors as SOAP responses"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.7-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Whoops\\": "src/Whoops/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Filipe Dobreira",
-                    "homepage": "https://github.com/filp",
-                    "role": "Developer"
-                }
-            ],
-            "description": "php error handling for cool kids",
-            "homepage": "https://filp.github.io/whoops/",
-            "keywords": [
-                "error",
-                "exception",
-                "handling",
-                "library",
-                "throwable",
-                "whoops"
-            ],
-            "support": {
-                "issues": "https://github.com/filp/whoops/issues",
-                "source": "https://github.com/filp/whoops/tree/2.17.0"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/denis-sokolov",
-                    "type": "github"
-                }
-            ],
-            "time": "2025-01-25T12:00:00+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
@@ -9011,103 +8992,6 @@
                 }
             ],
             "time": "2025-02-12T12:17:51+00:00"
-        },
-        {
-            "name": "nunomaduro/collision",
-            "version": "v8.5.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nunomaduro/collision.git",
-                "reference": "f5c101b929c958e849a633283adff296ed5f38f5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/collision/zipball/f5c101b929c958e849a633283adff296ed5f38f5",
-                "reference": "f5c101b929c958e849a633283adff296ed5f38f5",
-                "shasum": ""
-            },
-            "require": {
-                "filp/whoops": "^2.16.0",
-                "nunomaduro/termwind": "^2.1.0",
-                "php": "^8.2.0",
-                "symfony/console": "^7.1.5"
-            },
-            "conflict": {
-                "laravel/framework": "<11.0.0 || >=12.0.0",
-                "phpunit/phpunit": "<10.5.1 || >=12.0.0"
-            },
-            "require-dev": {
-                "larastan/larastan": "^2.9.8",
-                "laravel/framework": "^11.28.0",
-                "laravel/pint": "^1.18.1",
-                "laravel/sail": "^1.36.0",
-                "laravel/sanctum": "^4.0.3",
-                "laravel/tinker": "^2.10.0",
-                "orchestra/testbench-core": "^9.5.3",
-                "pestphp/pest": "^2.36.0 || ^3.4.0",
-                "sebastian/environment": "^6.1.0 || ^7.2.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider"
-                    ]
-                },
-                "branch-alias": {
-                    "dev-8.x": "8.x-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "./src/Adapters/Phpunit/Autoload.php"
-                ],
-                "psr-4": {
-                    "NunoMaduro\\Collision\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nuno Maduro",
-                    "email": "enunomaduro@gmail.com"
-                }
-            ],
-            "description": "Cli error handling for console/command-line PHP applications.",
-            "keywords": [
-                "artisan",
-                "cli",
-                "command-line",
-                "console",
-                "error",
-                "handling",
-                "laravel",
-                "laravel-zero",
-                "php",
-                "symfony"
-            ],
-            "support": {
-                "issues": "https://github.com/nunomaduro/collision/issues",
-                "source": "https://github.com/nunomaduro/collision"
-            },
-            "funding": [
-                {
-                    "url": "https://www.paypal.com/paypalme/enunomaduro",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/nunomaduro",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/nunomaduro",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2024-10-15T16:06:32+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -11070,7 +10954,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "jackbayliss/livewire-select2": 20,
+        "mpociot/teamwork": 20,
+        "rappasoft/laravel-livewire-tables": 20,
+        "victorybiz/laravel-simple-select": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

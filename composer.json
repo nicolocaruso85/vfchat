@@ -12,28 +12,27 @@
     "cweagans/composer-patches": "^1.7",
     "firebase/php-jwt": "^6.10",
     "google/cloud-firestore": "^1.47",
-    "jackbayliss/livewire-select2": "^1.1",
-    "kreait/laravel-firebase": "^5.10",
-    "laravel/framework": "^11.0",
+    "jackbayliss/livewire-select2": "dev-l12-compatibility",
+    "kreait/laravel-firebase": "^6.0",
+    "label84/laravel-auth-log": "^1.4",
+    "laravel/framework": "^12.0",
     "laravel/tinker": "^2.9",
     "laravel/ui": "^4.5",
     "livewire/livewire": "^3.5",
-    "mpociot/teamwork": "^9.0",
-    "rappasoft/laravel-livewire-tables": "^3.5",
+    "mpociot/teamwork": "dev-l12-compatibility",
+    "rappasoft/laravel-livewire-tables": "dev-laravel12-support",
     "spatie/eloquent-sortable": "^4.4",
     "spatie/laravel-activitylog": "^4.9",
-    "spatie/laravel-permission": "^6.10",
-    "spatie/laravel-searchable": "^1.12",
-    "victorybiz/laravel-simple-select": "^1.7",
-    "wire-elements/modal": "^2.0",
-    "yadahan/laravel-authentication-log": "^1.7"
+    "spatie/laravel-permission": "^6.15",
+    "spatie/laravel-searchable": "^1.13",
+    "victorybiz/laravel-simple-select": "dev-l12-compatibility",
+    "wire-elements/modal": "^2.0"
   },
   "require-dev": {
     "fakerphp/faker": "^1.23",
     "laravel/pint": "^1.13",
     "laravel/sail": "^1.26",
     "mockery/mockery": "^1.6",
-    "nunomaduro/collision": "^8.0",
     "phpunit/phpunit": "^10.5",
     "spatie/laravel-ignition": "^2.4"
   },
@@ -76,6 +75,24 @@
       }
     }
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/laravel-shift/teamwork.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/laravel-shift/laravel-simple-select.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/svenbw/laravel-livewire-tables.git"
+    },
+    {
+      "type": "vcs",
+      "url": "https://github.com/nicolocaruso85/livewire-select2"
+    }
+  ],
   "config": {
     "optimize-autoloader": true,
     "preferred-install": "dist",

@@ -7,11 +7,10 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Mpociot\Teamwork\Traits\UserHasTeams;
 use Spatie\Permission\Traits\HasRoles;
-use Yadahan\AuthenticationLog\AuthenticationLogable;
 
 class User extends Authenticatable
 {
-    use AuthenticationLogable, HasFactory, HasRoles, Notifiable, UserHasTeams;
+    use HasFactory, HasRoles, Notifiable, UserHasTeams;
 
     /**
      * The attributes that are mass assignable.
