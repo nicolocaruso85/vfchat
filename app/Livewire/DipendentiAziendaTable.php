@@ -83,6 +83,7 @@ class DipendentiAziendaTable extends DataTableComponent
                 ->component('azioni-dipendenti-azienda')
                 ->attributes(fn ($value, $row, Column $column) => [
                     'value' => $value,
+                    'active' => $row->active,
                     'id_azienda' => $this->id_azienda,
                 ]),
         ];
