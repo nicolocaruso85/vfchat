@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
+use Rappasoft\LaravelLivewireTables\Views\Columns\BooleanColumn;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
 
 class DipendentiAziendaTable extends DataTableComponent
@@ -73,6 +74,9 @@ class DipendentiAziendaTable extends DataTableComponent
 
             Column::make('Email', 'email')
                 ->searchable()
+                ->sortable(),
+
+            BooleanColumn::make('Attivo', 'active')
                 ->sortable(),
 
             ComponentColumn::make('Azioni', 'id')
