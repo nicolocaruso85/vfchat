@@ -2,8 +2,10 @@
 
 namespace App\Livewire;
 
+use App\Mail\NotificaAssegnazioneRuolo;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Mail;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
 use Rappasoft\LaravelLivewireTables\Views\Columns\ComponentColumn;
@@ -80,6 +82,9 @@ class AssociaDipendentiRuoloTable extends DataTableComponent
 
         setPermissionsTeamId($this->id_azienda);
         $user->assignRole($role->name);
+
+        Mail::to($user->email)
+            ->queue(new NotificaAssegnazioneRuolo($user));
 
         $this->dispatch('refreshDatatable');
     }

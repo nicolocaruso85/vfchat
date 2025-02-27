@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mail\NotificaAssegnazioneRuolo;
 use App\Mail\NuovoUtenteDaApprovare;
 use App\Models\Azienda;
 use App\Models\DipendentiAzienda;
@@ -48,6 +49,27 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
                     $user->update([
                         'active' => true,
                     ]);
+                }
+                if (isset($data['ruoli'])) {
+                    if ($azienda = $user->aziende->first()) {
+                        setPermissionsTeamId($azienda->id);
+
+                        $ruoli = [];
+
+                        foreach ($data['ruoli'] as $ruolo) {
+                            $ruoli[] = $ruolo['id'];
+                        }
+
+                        $user->syncRoles($ruoli);
+
+                        Mail::to($user->email)
+                            ->queue(new NotificaAssegnazioneRuolo($user));
+                    }
+                }
+                if (isset($data['gruppi'])) {
+                    foreach ($data['gruppi'] as $gruppo) {
+                        $user->attachTeam($gruppo['id']);
+                    }
                 }
             }
             else if (isset($data['name']) && isset($data['email'])) {
