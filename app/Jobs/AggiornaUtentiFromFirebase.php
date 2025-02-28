@@ -78,6 +78,7 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
                     'email' => $data['email'],
                     'password' => 'fake-password',
                     'active' => (isset($data['isApproved']) && $data['isApproved']) ? true : false,
+                    'firebase_uid' => $firebase_uid,
                 ]);
 
                 if (!empty($data['codiceAzienda'])) {
