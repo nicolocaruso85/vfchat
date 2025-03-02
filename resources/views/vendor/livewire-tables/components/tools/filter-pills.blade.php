@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 
 @if ($this->filtersAreEnabled() && $this->filterPillsAreEnabled() && $this->hasAppliedVisibleFiltersForPills())
     <div>
@@ -10,7 +10,7 @@
                 'text-gray-700 dark:text-white' => $isTailwind,
                 '' =>  $isBootstrap,
             ])>
-                {{ __('livewire-tables::core.Applied Filters') }}:
+                {{ __($this->getLocalisationPath.'Applied Filters') }}:
             </small>
 
             @foreach($this->getAppliedFiltersWithValues() as $filterSelectName => $value)
@@ -31,4 +31,3 @@
         </div>
     </div>
 @endif
-

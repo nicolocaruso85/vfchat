@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 @props([])
 
 <div 
@@ -33,7 +33,7 @@
                 @endif
                 @if ($this->isFilterLayoutSlideDown()) x-on:click="filtersOpen = !filtersOpen" @endif
             >
-                {{ __('livewire-tables::core.Filters') }}
+                {{ __($this->getLocalisationPath.'Filters') }}
 
                 @if ($count = $this->getFilterBadgeCount())
                     <span @class([

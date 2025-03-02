@@ -1,4 +1,4 @@
-@aware(['component', 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
+@aware([ 'tableName','isTailwind','isBootstrap','isBootstrap4','isBootstrap5'])
 <div x-data x-cloak x-show="reorderStatus"
     @class([
         'mr-0 mr-md-2 mb-3 mb-md-0' => $this->isBootstrap4,
@@ -14,11 +14,11 @@
         ])
     >
         <span x-cloak x-show="currentlyReorderingStatus">
-         {{ __('livewire-tables::core.cancel') }}
+         {{ __($this->getLocalisationPath.'cancel') }}
         </span>
 
         <span x-cloak x-show="!currentlyReorderingStatus">
-        {{ __('livewire-tables::core.Reorder') }}
+        {{ __($this->getLocalisationPath.'Reorder') }}
         </span>
 
     </button>
@@ -33,7 +33,7 @@
             ])
         >
             <span>
-            {{ __('livewire-tables::core.save') }}
+            {{ __($this->getLocalisationPath.'save') }}
             </span>
         </button>
     </div>
