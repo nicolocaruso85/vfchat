@@ -34,6 +34,11 @@ class DipendentiGruppoTable extends DataTableComponent
 
         $this->setDefaultSort('id');
 
+        $this->setQueryStringDisabled();
+        $this->setQueryStringForFilterDisabled();
+        $this->setQueryStringForSearchDisabled();
+        $this->setQueryStringForSortDisabled();
+
         $this->setTableAttributes([
             'class' => 'table table-rounded table-row-bordered border gy-4 gs-6 fs-6',
             'default' => false,
