@@ -31,6 +31,7 @@ class ModificaRuolo extends ModalComponent
         $this->role = Role::find($this->role_id);
 
         $this->name = $this->role->name;
+        $this->id_azienda = $this->role->team_id;
 
         $this->sel_permission = Permission::join('role_has_permissions', 'role_has_permissions.permission_id', '=', 'permissions.id')
             ->where('role_has_permissions.role_id', $this->role_id)
