@@ -12,7 +12,7 @@
     "cweagans/composer-patches": "^1.7",
     "firebase/php-jwt": "^6.10",
     "google/cloud-firestore": "^1.47",
-    "jackbayliss/livewire-select2": "dev-l12-compatibility",
+    "jackbayliss/livewire-select2": "1.1.4",
     "kreait/laravel-firebase": "^6.0",
     "label84/laravel-auth-log": "^1.4",
     "laravel/framework": "^12.0",
@@ -20,7 +20,7 @@
     "laravel/ui": "^4.5",
     "livewire/livewire": "^3.5",
     "mpociot/teamwork": "dev-l12-compatibility",
-    "rappasoft/laravel-livewire-tables": "dev-laravel12-support",
+    "rappasoft/laravel-livewire-tables": "3.7.1",
     "spatie/eloquent-sortable": "^4.4",
     "spatie/laravel-activitylog": "^4.9",
     "spatie/laravel-permission": "^6.15",
@@ -83,14 +83,6 @@
     {
       "type": "vcs",
       "url": "https://github.com/laravel-shift/laravel-simple-select.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/svenbw/laravel-livewire-tables.git"
-    },
-    {
-      "type": "vcs",
-      "url": "https://github.com/nicolocaruso85/livewire-select2"
     }
   ],
   "config": {
