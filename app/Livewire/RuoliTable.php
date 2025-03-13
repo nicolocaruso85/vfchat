@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Azienda;
 use App\Traits\AuthorizesRoleOrPermission;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Rappasoft\LaravelLivewireTables\Views\Column;
 use Rappasoft\LaravelLivewireTables\DataTableComponent;
@@ -14,9 +15,12 @@ class RuoliTable extends DataTableComponent
 {
     use AuthorizesRoleOrPermission;
 
-    protected $model = Role::class;
-
     public $action = 'ruolo';
+
+    public function builder(): Builder
+    {
+        return Role::leftJoin('aziendas', 'aziendas.id', '=', 'roles.team_id');
+    }
 
     public function configure(): void
     {
@@ -79,7 +83,10 @@ class RuoliTable extends DataTableComponent
                             return $azienda->nome;
                         }
                     }
-                }),
+                })
+                ->searchable(
+                    fn(Builder $query, $searchTerm) => $query->orWhere('aziendas.nome', 'LIKE', '%'. $searchTerm . '%')
+                ),
 
             ComponentColumn::make('Azioni', 'id')
                 ->component('azioni-roles')
