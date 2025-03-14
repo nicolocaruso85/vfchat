@@ -58,5 +58,29 @@
                 <div>{{ __('Non sono stati creati Gruppi per questa Azienda.') }}</div>
             @endforelse
         </div>
+
+        <h5 class="mb-0 mt-5">{{ __('Punti vendita') }}</h5>
+        <div class="accordion mt-4" id="accordion-gruppi">
+            @forelse ($this->negozi as $i => $negozio)
+                <div class="card accordion-item">
+                    <h2 class="accordion-header">
+                        <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#accordion-negozio-{{ $i }}" aria-expanded="false" aria-controls="accordionOne">
+                            <span>{{ $negozio->nome }}</span>
+                            <div class="badge bg-primary rounded-pill ms-4">
+                                {{ $this->usersPerNegozio($negozio->id) }}
+                            </div>
+                        </button>
+                    </h2>
+
+                    <div id="accordion-negozio-{{ $i }}" class="accordion-collapse collapsed collapse" data-bs-parent="#accordion-gruppi">
+                        <div class="accordion-body">
+                            @livewire('dipendenti-negozio-table', ['id_azienda' => $id_azienda, 'id_negozio' => $negozio->id], key('dipendenti-negozio-table-' . $negozio->id . '-' . $id_azienda))
+                        </div>
+                    </div>
+                </div>
+            @empty
+                <div>{{ __('Non sono stati creati Punti vendita per questa Azienda.') }}</div>
+            @endforelse
+        </div>
     @endif
 </div>

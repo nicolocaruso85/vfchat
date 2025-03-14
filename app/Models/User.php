@@ -53,4 +53,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Azienda::class, 'dipendenti_aziendas', 'id_dipendente', 'id_azienda')->using(DipendentiAzienda::class)->withPivot('id');
     }
+
+    public function negozi()
+    {
+        return $this->belongsToMany(Negozio::class, 'dipendenti_negozios', 'id_dipendente', 'id_negozio')->using(DipendentiNegozio::class)->withPivot('id');
+    }
 }

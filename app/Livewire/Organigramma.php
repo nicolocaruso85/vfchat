@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Azienda;
 use App\Models\Gruppo;
+use App\Models\Negozio;
 use App\Models\User;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -33,6 +34,17 @@ class Organigramma extends Component
         ->count();
     }
 
+    public function usersPerNegozio($id_negozio)
+    {
+        return User::whereHas('aziende', function ($query) {
+            return $query->where('id_azienda', $this->id_azienda);
+        })
+        ->whereHas('negozi', function ($query) use ($id_negozio) {
+            return $query->where('id_negozio', $id_negozio);
+        })
+        ->count();
+    }
+
     public function usersPerGruppo($id_gruppo)
     {
         return User::whereHas('aziende', function ($query) {
@@ -48,6 +60,12 @@ class Organigramma extends Component
     public function gruppi()
     {
         return Gruppo::where('owner_id', $this->id_azienda)->orderBy('id')->get();
+    }
+
+    #[Computed]
+    public function negozi()
+    {
+        return Negozio::where('id_azienda', $this->id_azienda)->orderBy('id')->get();
     }
 
     #[Computed]
