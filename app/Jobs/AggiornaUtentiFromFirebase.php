@@ -20,6 +20,10 @@ class AggiornaUtentiFromFirebase implements ShouldQueue
         $firestore = app('firebase.firestore');
         $database = $firestore->database();
 
+        if ($database->collection('users-updates')->count() == 0) {
+            return;
+        }
+
         $user_updates = $database->collection('users-updates')
             ->documents();
 
