@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Gruppo;
+use App\Models\Negozio;
 use LivewireUI\Modal\ModalComponent;
 use Spatie\Permission\Models\Role;
 
@@ -15,6 +16,7 @@ class PermessiRuoloAzienda extends ModalComponent
 
     public $ruoli = [];
     public $gruppi = [];
+    public $negozi = [];
 
     public $operazioni_aziende;
     public $operazioni_ruoli;
@@ -23,12 +25,14 @@ class PermessiRuoloAzienda extends ModalComponent
 
     public $permessi_ruoli = [];
     public $permessi_gruppi = [];
+    public $permessi_negozi = [];
 
     public function mount()
     {
         $this->ruolo = Role::find($this->id_ruolo);
 
         $this->gruppi = Gruppo::where('owner_id', $this->id_azienda)->get();
+        $this->negozi = Negozio::where('id_azienda', $this->id_azienda)->get();
         $this->ruoli = Role::where('team_id', $this->id_azienda)->get();
 
         foreach ($this->gruppi as $gruppo) {
@@ -37,6 +41,15 @@ class PermessiRuoloAzienda extends ModalComponent
                 'immagini' => $this->ruolo->hasPermissionTo('gruppo.' . $gruppo->id . '.immagini'),
                 'file' => $this->ruolo->hasPermissionTo('gruppo.' . $gruppo->id . '.file'),
                 'tutti' => $this->ruolo->hasAllPermissions(['gruppo.' . $gruppo->id . '.messaggi', 'gruppo.' . $gruppo->id . '.immagini', 'gruppo.' . $gruppo->id . '.file']),
+            ];
+        }
+
+        foreach ($this->negozi as $negozio) {
+            $this->permessi_negozi[$negozio->id] = [
+                'messaggi' => $this->ruolo->hasPermissionTo('negozio.' . $negozio->id . '.messaggi'),
+                'immagini' => $this->ruolo->hasPermissionTo('negozio.' . $negozio->id . '.immagini'),
+                'file' => $this->ruolo->hasPermissionTo('negozio.' . $negozio->id . '.file'),
+                'tutti' => $this->ruolo->hasAllPermissions(['negozio.' . $negozio->id . '.messaggi', 'negozio.' . $negozio->id . '.immagini', 'negozio.' . $negozio->id . '.file']),
             ];
         }
 
@@ -131,6 +144,18 @@ class PermessiRuoloAzienda extends ModalComponent
             }
             if ($this->permessi_gruppi[$gruppo->id]['file']) {
                 $permissions[] = 'gruppo.' . $gruppo->id . '.file';
+            }
+        }
+
+        foreach ($this->negozi as $negozio) {
+            if ($this->permessi_negozi[$negozio->id]['messaggi']) {
+                $permissions[] = 'negozio.' . $negozio->id . '.messaggi';
+            }
+            if ($this->permessi_negozi[$negozio->id]['immagini']) {
+                $permissions[] = 'negozio.' . $negozio->id . '.immagini';
+            }
+            if ($this->permessi_negozi[$negozio->id]['file']) {
+                $permissions[] = 'negozio.' . $negozio->id . '.file';
             }
         }
 
@@ -293,8 +318,34 @@ class PermessiRuoloAzienda extends ModalComponent
             if ($this->permessi_gruppi[$id]['messaggi'] && $this->permessi_gruppi[$id]['immagini'] && $this->permessi_gruppi[$id]['file']) {
                 $this->permessi_gruppi[$id]['tutti'] = true;
             }
-            elseif (!$this->permessi_gruppi[$id]['messaggi'] || !$this->permessi_gruppi[$id]['update'] || !$this->permessi_gruppi[$id]['file']) {
+            elseif (!$this->permessi_gruppi[$id]['messaggi'] || !$this->permessi_gruppi[$id]['immagini'] || !$this->permessi_gruppi[$id]['file']) {
                 $this->permessi_gruppi[$id]['tutti'] = false;
+            }
+        }
+    }
+
+    public function updatedPermessiNegozi($value, $key)
+    {
+        list($id, $op) = explode('.', $key);
+
+        if ($op == 'tutti') {
+            if ($this->permessi_negozi[$id]['tutti']) {
+                $this->permessi_negozi[$id]['messaggi'] = true;
+                $this->permessi_negozi[$id]['immagini'] = true;
+                $this->permessi_negozi[$id]['file'] = true;
+            }
+            else {
+                $this->permessi_negozi[$id]['messaggi'] = false;
+                $this->permessi_negozi[$id]['immagini'] = false;
+                $this->permessi_negozi[$id]['file'] = false;
+            }
+        }
+        else {
+            if ($this->permessi_negozi[$id]['messaggi'] && $this->permessi_negozi[$id]['immagini'] && $this->permessi_negozi[$id]['file']) {
+                $this->permessi_negozi[$id]['tutti'] = true;
+            }
+            elseif (!$this->permessi_negozi[$id]['messaggi'] || !$this->permessi_negozi[$id]['immagini'] || !$this->permessi_negozi[$id]['file']) {
+                $this->permessi_negozi[$id]['tutti'] = false;
             }
         }
     }

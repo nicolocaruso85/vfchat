@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Observers\NegozioObserver;
+use Illuminate\Database\Eloquent\Attributes\ObservedBy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+#[ObservedBy([NegozioObserver::class])]
 class Negozio extends Model
 {
     use HasFactory;

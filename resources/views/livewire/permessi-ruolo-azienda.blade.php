@@ -22,7 +22,7 @@
                 <th class="fw-bold text-gray-600 text-uppercase text-center border-top-0">Tutti</th>
             </thead>
             <tbody>
-                <tr>
+                <!--<tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         Aziende
                     </td>
@@ -96,7 +96,7 @@
                             <input class="form-check-input" type="checkbox" wire:model.live="operazioni_utenti.tutti">
                         </div>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                         Quiz
@@ -198,6 +198,46 @@
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
                             <div class="form-check mb-0 d-flex justify-content-center fs-5">
                                 <input class="form-check-input" type="checkbox" wire:model.live="permessi_gruppi.{{ $gruppo->id }}.tutti">
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <h5 class="mb-0 mt-5">{{ __('Operazioni sui Punti vendita') }}</h5>
+        <table class="table">
+            <thead>
+                <th class="fw-bold text-gray-600 text-uppercase border-top-0">Inviare</th>
+                <th class="fw-bold text-gray-600 text-uppercase text-center border-top-0">Messaggi</th>
+                <th class="fw-bold text-gray-600 text-uppercase text-center border-top-0">Immagini</th>
+                <th class="fw-bold text-gray-600 text-uppercase text-center border-top-0">File</th>
+                <th class="fw-bold text-gray-600 text-uppercase text-center border-top-0">Tutti</th>
+            </thead>
+            <tbody>
+                @foreach ($negozi as $negozio)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
+                            {{ $negozio->nome }}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
+                            <div class="form-check mb-0 d-flex justify-content-center fs-5">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_negozi.{{ $negozio->id }}.messaggi">
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
+                            <div class="form-check mb-0 d-flex justify-content-center fs-5">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_negozi.{{ $negozio->id }}.immagini">
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
+                            <div class="form-check mb-0 d-flex justify-content-center fs-5">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_negozi.{{ $negozio->id }}.file">
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white align-middle text-nowrap">
+                            <div class="form-check mb-0 d-flex justify-content-center fs-5">
+                                <input class="form-check-input" type="checkbox" wire:model.live="permessi_negozi.{{ $negozio->id }}.tutti">
                             </div>
                         </td>
                     </tr>
